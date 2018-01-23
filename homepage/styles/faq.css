@@ -1,0 +1,18 @@
+.question, .answer {
+   border: .5px solid #B24B59;
+   text-align: center;
+   height: 80px;
+   line-height: 100px;
+}
+.answer {
+   text-align: left;
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+}
+h3, h4 {
+   margin: 20px 10px;
+   padding: 0;
+}

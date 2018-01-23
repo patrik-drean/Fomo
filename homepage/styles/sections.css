@@ -1,0 +1,34 @@
+#maintenance-section {
+   background-color: black;
+   height: 30px;
+}
+
+#top-section, footer {
+  background-color: #923E73;
+  height: 100px;
+}
+
+#left-section {
+  background-color: #BB9C4F;
+  min-height: 300px;
+}
+
+#middle-section {
+  background-color: #ACAC9E;
+  min-height: 300px;
+}
+
+#right-section {
+  background-color: #356276;
+  min-height: 300px;
+}
+
+p {
+   color: red;
+   width: 400px;
+   margin: 0 auto;
+}
+h2 {
+   margin: 0;
+   padding: 0;
+}
