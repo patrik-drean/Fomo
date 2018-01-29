@@ -1,16 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from cuser.models import AbstractCUser
+# from django.contrib.auth.models import AbstractUser
 
-class User(models.Model):
-        first_name = models.TextField(null=True, blank = True)
-        last_name = models.TextField(null=True, blank = True)
+class User(AbstractCUser):
+    first_name = models.TextField(null=True, blank = True)
+    last_name = models.TextField(null=True, blank = True)
+    birthdate = models.DateTimeField(null=True, blank = True)
+    address = models.TextField(null=True, blank=True)
+    state = models.TextField(null=True, blank=True)
+    zip = models.TextField(null=True, blank=True)
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    def get_purchases(self):
+        return ['Roku Ultimate 4', 'Skis', 'Computer']

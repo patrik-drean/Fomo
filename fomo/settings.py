@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_mako_plus',
+    'cuser',    #Unique email identifier
     'homepage',
-    'account',  
+    'account',
 ]
+
+# AUTH_USER_MODEL = 'cuser.CUser' #This is the github user
+AUTH_USER_MODEL = 'account.User' #This is our custom user
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
