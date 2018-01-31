@@ -3,7 +3,7 @@ from account import models as amod
 from datetime import datetime
 from django.contrib.auth.models import Group, Permission
 from django.contrib.auth import authenticate, login
-
+from django.contrib.contenttypes.models import ContentType
 
 class UserClassTestCase(TestCase):
 
@@ -40,37 +40,41 @@ class UserClassTestCase(TestCase):
         # my_group.user_set.add(self.user)
         # print(Group.objects.get(name='test').name)
         group = Group(name="Test")
-        group.save()                  # save this new group for this example
-        user = amod.User.objects.get(email = self.user.email) # assuming, there is one initial user
+        content_type = ContentType.objects.get_for_model(amod)
+
+
+
+        group.permissions.add(permissions)
+        group.save()
+        user = amod.User.objects.get(email = self.user.email)
         user.groups.add(group)
         print(Group.objects.get(name='Test').name)
 
-    def test_adding_permissions(self):
-        '''Test adding a few permissions'''
+    # def test_adding_permissions(self):
+    #     '''Test adding a few permissions'''
          # permission = Permission.objects.get(name='account | user | can add user')
          # self.user.user_permissions.add(permission)
 
-    def test_login(request):
-        '''Test to login a user succesfully'''
-        username = 'lisa@simpsons.com'
-        password = 'password'
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                print(user.first_name)
-            else:
-                print('no')
-        else:
-            print('no')
-
-    def test_logoff(self):
-        '''Test adding a few permissions'''
+    # def test_login(request):
+        # '''Test to login a user succesfully'''
+        # username = 'lisa@simpsons.com'
+        # password = 'password'
+        # user = authenticate(username=username, password=password)
+        # if user is not None:
+        #     if user.is_active:
+        #         login(request, user)
+        #         print(user.first_name)
+        #     else:
+        #         print('no')
+        # else:
+        #     print('no')
+    #
+    # def test_logoff(self):
+    #     '''Test adding a few permissions'''
 
 
     def test_field_changes(self):
         '''Test changing user attributes'''
-
         updatedUser = amod.User.objects.get(email = self.user.email)
         updatedUser.first_name = 'Tommy'
         updatedUser.last_name = 'Trucky'
