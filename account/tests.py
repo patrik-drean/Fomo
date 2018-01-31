@@ -45,6 +45,8 @@ class UserClassTestCase(TestCase):
                                                 content_type = ct)
         group.permissions.add(permission)
         group.save()
+
+        # add group to user
         self.user.groups.add(group)
 
         # group 2 with 1 permission
@@ -56,23 +58,41 @@ class UserClassTestCase(TestCase):
                                                 content_type = ct)
         group.permissions.add(permission)
         group.save()
-        self.user.groups.add(group)
 
+        #add group to user
+        self.user.groups.add(group)
         self.user.save()
 
-        permission = Permission.objects.get(codename = 'can_edit')
-        print(permission)
+        # Check groups are assigned to the user
+        user_in_group = Group.objects.get(name="Test").user_set.get(email = self.user.email)
+        self.assertTrue(user_in_group, self.user)
 
-        # Check permission is assigned to the user
-        test = self.user.has_perm('account.can_edit')
-        self.assertTrue(test)
+        user_in_group2 = Group.objects.get(name="Test2").user_set.get(email = self.user.email)
+        self.assertTrue(user_in_group2, self.user)
+
+        # Check permissions are assigned to the user
+        test1 = self.user.has_perm('account.can_edit')
+        self.assertTrue(test1)
         test2 = self.user.has_perm('account.can_view')
         self.assertTrue(test2)
 
-    # def test_adding_permissions(self):
-    #     '''Test adding a few permissions'''
-         # permission = Permission.objects.get(name='account | user | can add user')
-         # self.user.user_permissions.add(permission)
+    def test_adding_permissions(self):
+         '''Test adding a few permissions directly to the user'''
+         ct = ContentType.objects.get_for_model(amod.User)
+         permission1 = Permission.objects.create(codename ='can_delete',
+                                                 name ='Can delete',
+                                                 content_type = ct)
+
+         permission2 = Permission.objects.create(codename ='can_create',
+                                                 name ='Can create',
+                                                 content_type = ct)
+         self.user.user_permissions.add(permission1, permission2)
+
+         # Check permissions are assigned to the user
+         test1 = self.user.has_perm('account.can_delete')
+         self.assertTrue(test1)
+         test2 = self.user.has_perm('account.can_create')
+         self.assertTrue(test2)
 
     def test_login(request):
         '''Test to login a user succesfully'''
@@ -82,7 +102,8 @@ class UserClassTestCase(TestCase):
         if user is not None:
             if user.is_active:
                 # login(request, user)
-                print(user.first_name)
+                # print(user.first_name)
+                x=0
             else:
                 print('no')
         else:
