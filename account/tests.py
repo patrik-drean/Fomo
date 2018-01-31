@@ -36,41 +36,60 @@ class UserClassTestCase(TestCase):
 
     def test_adding_groups(self):
         '''Test adding a few groups'''
-        # my_group = Group.objects.get(name='Test')
-        # my_group.user_set.add(self.user)
-        # print(Group.objects.get(name='test').name)
+        # group 1 with 1 permission
         group = Group(name="Test")
-        content_type = ContentType.objects.get_for_model(amod)
-
-
-
-        group.permissions.add(permissions)
         group.save()
-        user = amod.User.objects.get(email = self.user.email)
-        user.groups.add(group)
-        print(Group.objects.get(name='Test').name)
+        ct = ContentType.objects.get_for_model(amod.User)
+        permission = Permission.objects.create(codename ='can_view',
+                                                name ='Can view',
+                                                content_type = ct)
+        group.permissions.add(permission)
+        group.save()
+        self.user.groups.add(group)
+
+        # group 2 with 1 permission
+        group = Group(name="Test2")
+        group.save()
+        ct = ContentType.objects.get_for_model(amod.User)
+        permission = Permission.objects.create(codename ='can_edit',
+                                                name ='Can edit',
+                                                content_type = ct)
+        group.permissions.add(permission)
+        group.save()
+        self.user.groups.add(group)
+
+        self.user.save()
+
+        permission = Permission.objects.get(codename = 'can_edit')
+        print(permission)
+
+        # Check permission is assigned to the user
+        test = self.user.has_perm('account.can_edit')
+        self.assertTrue(test)
+        test2 = self.user.has_perm('account.can_view')
+        self.assertTrue(test2)
 
     # def test_adding_permissions(self):
     #     '''Test adding a few permissions'''
          # permission = Permission.objects.get(name='account | user | can add user')
          # self.user.user_permissions.add(permission)
 
-    # def test_login(request):
-        # '''Test to login a user succesfully'''
-        # username = 'lisa@simpsons.com'
-        # password = 'password'
-        # user = authenticate(username=username, password=password)
-        # if user is not None:
-        #     if user.is_active:
-        #         login(request, user)
-        #         print(user.first_name)
-        #     else:
-        #         print('no')
-        # else:
-        #     print('no')
-    #
-    # def test_logoff(self):
-    #     '''Test adding a few permissions'''
+    def test_login(request):
+        '''Test to login a user succesfully'''
+        username = 'lisa@simpsons.com'
+        password = 'password'
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                # login(request, user)
+                print(user.first_name)
+            else:
+                print('no')
+        else:
+            print('no')
+
+    def test_logoff(self):
+        '''Test adding a few permissions'''
 
 
     def test_field_changes(self):
