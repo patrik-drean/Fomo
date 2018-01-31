@@ -13,7 +13,6 @@ class UserClassTestCase(TestCase):
         self.user.last_name = 'Simpson'
         self.user.email = 'lisa@simpsons.com'
         self.user.set_password('password')
-        # self.user.birthdate = '1965-02-04'
         self.user.address = '243 spring road'
         self.user.state = 'Utah'
         self.user.zip = '22123'
@@ -29,10 +28,13 @@ class UserClassTestCase(TestCase):
         self.assertEqual(self.user.first_name, user2.first_name)
         self.assertEqual(self.user.last_name, user2.last_name)
         self.assertEqual(self.user.email, user2.email)
-        self.assertTrue(user2.check_password('password'))
         self.assertEqual(self.user.address, user2.address)
         self.assertEqual(self.user.state, user2.state)
         self.assertEqual(self.user.zip, user2.zip)
+
+    def test_check_password(self):
+        ''' Check password '''
+        self.assertTrue(user2.check_password('password'))
 
     def test_adding_groups(self):
         '''Test adding a few groups'''
