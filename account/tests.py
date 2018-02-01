@@ -7,7 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase, RequestFactory
 
 class UserClassTestCase(TestCase):
-
+    
     # Load up fixtures
     fixtures = ['data.yaml']
 
