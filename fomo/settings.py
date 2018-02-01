@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'account',
 ]
 
-# AUTH_USER_MODEL = 'cuser.CUser' #This is the github user
-AUTH_USER_MODEL = 'account.User' #This is our custom user
+# AUTH_USER_MODEL = 'cuser.CUser' # This is the github user
+AUTH_USER_MODEL = 'account.User' # This is our custom user
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

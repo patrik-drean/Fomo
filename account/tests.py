@@ -36,14 +36,10 @@ class UserClassTestCase(TestCase):
         self.assertEqual(self.user.first_name, user2.first_name)
         self.assertEqual(self.user.last_name, user2.last_name)
         self.assertEqual(self.user.email, user2.email)
-        self.assertTrue(user2.check_password('password'))
+        self.assertEqual(self.user.password, user2.password)
         self.assertEqual(self.user.address, user2.address)
         self.assertEqual(self.user.state, user2.state)
         self.assertEqual(self.user.zip, user2.zip)
-
-    def test_check_password(self):
-        ''' Check password '''
-        self.assertTrue(self.user.check_password('password'))
 
     def test_adding_groups(self):
         '''Test adding a few groups'''
@@ -130,6 +126,9 @@ class UserClassTestCase(TestCase):
     # def test_logoff(self):
     #     '''Test logging off a user'''
 
+    def test_check_password(self):
+        ''' Check password '''
+        self.assertTrue(self.user.check_password('password'))
 
     def test_field_changes(self):
         '''Test changing user attributes'''
