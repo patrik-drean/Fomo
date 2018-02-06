@@ -1,0 +1,69 @@
+- model: contenttypes.contenttype
+  pk: 1
+  fields: {app_label: admin, model: logentry}
+
+- model: sessions.session
+  pk: 57cegxbsd7bf7819558gmmhnm9ur0vrc
+  fields: {session_data: N2NjMWU5MGZmODUzODkyNmFjYjdmNjAzMTEwYjE0YjY5N2QyNDI0YTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0YjhhM2FhMjIzMjA0MTc2MDZmY2YxMzJkYzE2NmM5ZWRjM2JmNzA4In0=,
+    expire_date: !!timestamp '2018-02-12 17:42:37.894690+00:00'}
+
+- model: auth.permission
+  pk: 1
+  fields: {name: Can add log entry, content_type: 1, codename: add_logentry}
+- model: auth.permission
+  pk: 2
+  fields: {name: Can change log entry, content_type: 1, codename: change_logentry}
+
+- model: auth.group
+  pk: 2
+  fields:
+    name: Customer Support
+    permissions: [18, 1]
+
+- model: auth.group
+  pk: 3
+  fields:
+    name: Inventory Control
+    permissions: [1, 2]
+
+- model: account.user
+  pk: 100
+  fields:
+    password: pbkdf2_sha256$100000$KOFXqrcHEfcq$7JBNRo7PsNtenp1TTlHVhdDnTfHl8FNN6UthHLeTFME=
+    last_login: 2018-01-29 17:42:37.885221+00:00
+    is_superuser: true
+    email: patrikdrean@gmail.com
+    first_name: Patrik
+    last_name: Drean
+    is_staff: true
+    is_active: true
+    date_joined: 2018-01-29 17:42:15.274082+00:00
+    address: null
+    state: null
+    zip: null
+    groups: []
+    user_permissions: []
+
+- model: account.user
+  pk: 101
+  fields:
+    password: pbkdf2_sha256$100000$KOFXqrcHEfcq$7JBNRo7PsNtenp1TTlHVhdDnTfHl8FNN6UthHLeTFME=
+    last_login: 2018-01-29 17:42:37.885221+00:00
+    is_superuser: true
+    email: tacoman@gmail.com
+    first_name: Taco
+    last_name: Johnson
+    is_staff: true
+    is_active: true
+    date_joined: 2018-01-29 17:42:15.274082+00:00
+    address: null
+    state: null
+    zip: null
+    groups: []
+    user_permissions: []
+
+- model: admin.logentry
+  pk: 1
+  fields: {action_time: !!timestamp '2018-01-30 18:43:57.155635+00:00', user: 100, content_type: 1,
+    object_id: '1', object_repr: test, action_flag: 1, change_message: '[{"added":
+      {}}]'}
