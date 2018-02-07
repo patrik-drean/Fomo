@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cuser',    #Unique email identifier
     'homepage',
     'account',
+    'formlib',
 ]
 
 # AUTH_USER_MODEL = 'cuser.CUser' # This is the github user

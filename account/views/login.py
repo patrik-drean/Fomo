@@ -18,7 +18,7 @@ def process_request(request):
     return request.dmp_render('signup.html', context)
 
 
-class SignupForm(Formless):
+class LoginForm(Formless):
 
 
     def init(self):
@@ -28,20 +28,6 @@ class SignupForm(Formless):
                                                     label="Password",
                                                     widget=forms.PasswordInput
                                                     )
-        self.fields['password2'] = forms.CharField(
-                                                    label="Confirm Password",
-                                                    widget=forms.PasswordInput
-                                                    )
-
-    def clean_password(self):
-        pwd = self.cleaned_data.get('password')
-        if len(pwd) < 8:
-            raise forms.ValidationError('Password must be at least 8 characters')
-        if not re.search('[0-9]+', pwd):
-            raise forms.ValidationError('Your password must include at least one number.')
-        return pwd
-
-    # def clean_email(self):
 
 
     def clean(self):
