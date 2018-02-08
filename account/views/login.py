@@ -3,13 +3,14 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django_mako_plus import view_function, jscontext
 from formlib import Formless
+from django.contrib.auth import authenticate, login
 import re
 
 @view_function
 def process_request(request):
     form = LoginForm(request)
     if form.is_valid():
-        # All data is clean at this point. Don't change the info.
+        form.commit()
         return HttpResponseRedirect('/account/index/')
 
     context = {
@@ -39,3 +40,6 @@ class LoginForm(Formless):
                                 )
         if self.user is None:
             raise forms.ValidationError('Invalid email or password')
+
+    def commit(self):
+        login(self.request, self.user)

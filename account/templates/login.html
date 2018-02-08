@@ -1,4 +1,4 @@
-<%inherit file="/homepage/templates/base.htm" />
+<%inherit file="app_base.htm" />
 
 
 <%block name="middle_content">
@@ -6,4 +6,5 @@
    <div id="main-div">
       ${ form }
    </div>
+${request.user.is_authenticated}
 </%block>
