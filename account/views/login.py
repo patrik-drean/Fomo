@@ -7,7 +7,7 @@ import re
 
 @view_function
 def process_request(request):
-    form = SignupForm(request)
+    form = LoginForm(request)
     if form.is_valid():
         # All data is clean at this point. Don't change the info.
         return HttpResponseRedirect('/account/index/')
@@ -15,7 +15,8 @@ def process_request(request):
     context = {
         "form": form,
     }
-    return request.dmp_render('signup.html', context)
+
+    return request.dmp_render('login.html', context)
 
 
 class LoginForm(Formless):
@@ -28,11 +29,13 @@ class LoginForm(Formless):
                                                     label="Password",
                                                     widget=forms.PasswordInput
                                                     )
+        self.submit_text = 'Login'
 
 
     def clean(self):
-        p1 = self.cleaned_data.get("password")
-        p2 = self.cleaned_data.get("password2")
-        if p1 != p2:
-            raise forms.ValidationError('Passwords do not match')
-        return self.cleaned_data
+        self.user = authenticate(
+                                email = self.cleaned_data.get('email'),
+                                password = self.cleaned_data.get('password'),
+                                )
+        if self.user is None:
+            raise forms.ValidationError('Invalid email or password')

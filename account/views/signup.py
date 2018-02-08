@@ -4,12 +4,16 @@ from django.http import HttpResponseRedirect
 from django_mako_plus import view_function, jscontext
 from formlib import Formless
 import re
+from account import models as amod
+from django.contrib.auth import authenticate, login
 
 @view_function
 def process_request(request):
     form = SignupForm(request)
     if form.is_valid():
+        form.commit()
         # All data is clean at this point. Don't change the info.
+
         return HttpResponseRedirect('/account/index/')
 
     context = {
@@ -33,6 +37,11 @@ class SignupForm(Formless):
                                                     widget=forms.PasswordInput
                                                     )
 
+        self.fields['address'] = forms.CharField(label="Address")
+        self.fields['state'] = forms.CharField(label="State")
+        self.fields['zip'] = forms.CharField(label="Zip Code")
+        self.submit_text = 'Sign Up'
+
     def clean_password(self):
         pwd = self.cleaned_data.get('password')
         if len(pwd) < 8:
@@ -41,8 +50,13 @@ class SignupForm(Formless):
             raise forms.ValidationError('Your password must include at least one number.')
         return pwd
 
-    # def clean_email(self):
-
+    def clean_email(self):
+        # Grab user from database with email. If a user comes back, throw exception
+        email = self.cleaned_data.get('email')
+        users = amod.User.objects.filter(email = email)
+        if users:
+            raise forms.ValidationError('Email already exists in database')
+        return email
 
     def clean(self):
         p1 = self.cleaned_data.get("password")
@@ -50,3 +64,16 @@ class SignupForm(Formless):
         if p1 != p2:
             raise forms.ValidationError('Passwords do not match')
         return self.cleaned_data
+
+    def commit(self):
+        user = amod.User()
+        user.email = self.cleaned_data.get("email")
+        user.set_password(self.cleaned_data.get("password"))
+        user.address = self.cleaned_data.get("address")
+        user.state = self.cleaned_data.get("state")
+        user.zip = self.cleaned_data.get("zip")
+
+        user.save()
+
+        user = authenticate(email = user.email, password = self.cleaned_data.get("password"))
+        login(self.request, user)
