@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'account',
     'formlib',
     'catalog',
-
+    'manager',
 ]
 
 # AUTH_USER_MODEL = 'cuser.CUser' # This is the github user
