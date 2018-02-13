@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'homepage',
     'account',
     'formlib',
+    'catalog',
+
 ]
 
 # AUTH_USER_MODEL = 'cuser.CUser' # This is the github user
@@ -151,10 +153,15 @@ WSGI_APPLICATION = 'fomo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fomo_db',
+        'USER': 'patrikdrean',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
