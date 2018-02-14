@@ -23,7 +23,7 @@ class BulkProduct(Product):
 class IndividualProduct(Product):
     ItemID = models.IntegerField(null=True, blank=True)
 
-class IndividualProduct(Product):
+class RentalProduct(Product):
     ItemID = models.IntegerField(null=True, blank=True)
     MaxRental = models.IntegerField(null=True, blank=True)
     RetireDate = models.DateTimeField(null=True, blank=True)

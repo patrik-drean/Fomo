@@ -6,4 +6,4 @@ from datetime import datetime, timezone
 def process_request(request):
     context = {}
 
-    return request.dmp_render('index.html', context)
+    return request.dmp_render('create.html', context)
