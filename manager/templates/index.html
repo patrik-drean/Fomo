@@ -1,6 +1,7 @@
 <%inherit file="app_base.htm" />
 
 <%block name="middle_content">
+
 <br />
 <a href="/manager/create/">
    <button class="btn-danger" type="button">Create Product</button>
@@ -9,44 +10,35 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-      <th scope="col"></th>
+      <th scope="col">Category</th>
+      <th scope="col">Product Type</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
+      % for product in activeProducts:
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>${ product.Category.Name }</td>
+      <td>${ product.__class__.__name__[0:product.__class__.__name__.find('Product')]}</td>
+      <td>${ product.Name }</td>
+      <td>$ ${ product.Price }</td>
+
+      % if hasattr(product, 'Quantity'):
+      <td>${ product.Quantity }</td>
+
+      % else:
+         <td>1</td>
+
+      % endif
       <td>
-         <a href="/manager/create/" class="text-danger">Edit</a> |
-         <a href="/manager/delete/" class="text-danger">Delete</a>
-
+         <a href="/manager/create/${ product.id}" class="text-danger">Edit</a> |
+         <a href="/manager/delete/${ product.id}" class="text-danger">Delete</a>
       </td>
-
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+      % endfor
   </tbody>
 </table>
 

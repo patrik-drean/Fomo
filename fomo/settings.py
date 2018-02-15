@@ -157,7 +157,7 @@ WSGI_APPLICATION = 'fomo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fomo_db',
+        'NAME': 'fomo',
         'USER': 'patrikdrean',
         'PASSWORD': '',
         'HOST': 'localhost',

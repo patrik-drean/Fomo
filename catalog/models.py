@@ -1,31 +1,51 @@
 from django.db import models
+from polymorphic.models import PolymorphicModel
 
 class Category(models.Model):
-    Name = models.TextField(null=True, blank=True)
-    Description = models.TextField(null=True, blank=True)
-    CreateDate = models.DateTimeField(null=True, blank=True)
-    LastModified = models.DateTimeField(null=True, blank=True)
+    Name = models.TextField()
+    Description = models.TextField()
+    CreateDate = models.DateTimeField(auto_now_add=True)
+    LastModified = models.DateTimeField(auto_now=True)
 
-class Product(models.Model):
-    Name = models.TextField(null=True, blank=True)
-    Description = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.Name
+
+# products[0].__class__.__name__ = 'BulkProdcut'
+# pip3 install django-polymorphic
+class Product(PolymorphicModel):
+    TYPE_CHOICES = (
+    ('BulkProduct', 'Bulk Product'),
+    ('IndividualProduct', 'Individual Product'),
+    ('RentalProduct', 'Rental Product'),
+    )
+
+    STATUS_CHOICES = (
+    ('A', 'Active'),
+    ('I', 'Inactive'),
+    )
+
+    Name = models.TextField()
+    Description = models.TextField()
     Category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    Price = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
-    CreateDate = models.DateTimeField(null=True, blank=True)
-    LastModified = models.DateTimeField(null=True, blank=True)
-    Status = models.TextField(null=True, blank=True)
+    Price = models.DecimalField(max_digits=8, decimal_places=2)
+    CreateDate = models.DateTimeField(auto_now_add=True)
+    LastModified = models.DateTimeField(auto_now=True)
+    Status = models.TextField(choices=STATUS_CHOICES, default='A')
 
 class BulkProduct(Product):
-    Quantity = models.IntegerField(null=True, blank=True)
-    ReorderTrigger = models.BooleanField( blank=True)
-    ReorderQuantity = models.IntegerField(null=True, blank=True)
+    TITLE = 'Bulk'
+    Quantity = models.IntegerField()
+    ReorderTrigger = models.IntegerField()
+    ReorderQuantity = models.IntegerField()
 
 class IndividualProduct(Product):
-    ItemID = models.IntegerField(null=True, blank=True)
+    TITLE = 'Individual'
+    ItemID = models.TextField()
 
 class RentalProduct(Product):
-    ItemID = models.IntegerField(null=True, blank=True)
-    MaxRental = models.IntegerField(null=True, blank=True)
+    TITLE = 'Rental'
+    ItemID = models.TextField()
+    MaxRental = models.IntegerField()
     RetireDate = models.DateTimeField(null=True, blank=True)
 
 
