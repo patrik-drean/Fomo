@@ -1,232 +1,251 @@
-- model: catalog.category
+- model: catalog.Category
   pk: 1
   fields:
-    create_date: ! '2018-02-14 14:39:46.896154'
-    last_modified: ! '2018-02-14 14:39:46.896170'
-    name: Sheet Music
-    description: Sheet Music
-- model: catalog.category
+    CreateDate: ! '2018-02-14 14:39:46.896154'
+    LastModified: ! '2018-02-14 14:39:46.896170'
+    Name: Sheet Music
+    Description: Sheet Music
+- model: catalog.Category
   pk: 2
   fields:
-    create_date: ! '2018-02-14 14:39:51.440070'
-    last_modified: ! '2018-02-14 14:39:51.440126'
-    name: Instruments
-    description: Instruments
-- model: catalog.category
+    CreateDate: ! '2018-02-14 14:39:51.440070'
+    LastModified: ! '2018-02-14 14:39:51.440126'
+    Name: Instruments
+    Description: Instruments
+- model: catalog.Category
   pk: 3
   fields:
-    create_date: ! '2018-02-14 14:40:21.556232'
-    last_modified: ! '2018-02-14 14:40:21.556247'
-    name: Electrical
-    description: Electrical equipment for music parties
-- model: catalog.category
+    CreateDate: ! '2018-02-14 14:40:21.556232'
+    LastModified: ! '2018-02-14 14:40:21.556247'
+    Name: Electrical
+    Description: Electrical equipment for music parties
+- model: catalog.Category
   pk: 4
   fields:
-    create_date: ! '2018-02-14 14:52:45.309600'
-    last_modified: ! '2018-02-14 14:52:45.309616'
-    name: Dream On
-    description: It's not gonna happen.
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:52:45.309600'
+    LastModified: ! '2018-02-14 14:52:45.309616'
+    Name: Dream On
+    Description: It's not gonna happen.
+- model: catalog.Product
   pk: 1
   fields:
     polymorphic_ctype: 10
-    create_date: ! '2018-02-14 14:41:28.900082'
-    last_modified: ! '2018-02-14 14:41:28.900095'
-    status: A
-    name: Fight Song
-    description: By Rachel Platten and Dave Bassett
-    category: 1
-    price: '5.00'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:41:28.900082'
+    LastModified: ! '2018-02-14 14:41:28.900095'
+    Status: A
+    Name: Fight Song
+    Description: By Rachel Platten and Dave Bassett
+    Category: 1
+    Price: '5.00'
+- model: catalog.Product
   pk: 2
   fields:
     polymorphic_ctype: 10
-    create_date: ! '2018-02-14 14:42:20.872833'
-    last_modified: ! '2018-02-14 14:42:20.872846'
-    status: A
-    name: Firework
-    description: Sung by Katy Perry
-    category: 1
-    price: '5.00'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:42:20.872833'
+    LastModified: ! '2018-02-14 14:42:20.872846'
+    Status: A
+    Name: Firework
+    Description: Sung by Katy Perry
+    Category: 1
+    Price: '5.00'
+- model: catalog.Product
   pk: 3
   fields:
     polymorphic_ctype: 10
-    create_date: ! '2018-02-14 14:42:46.926471'
-    last_modified: ! '2018-02-14 14:42:46.926484'
-    status: A
-    name: Lost Boy
-    description: Words and Music by Ruth Berhe
-    category: 1
-    price: '7.00'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:42:46.926471'
+    LastModified: ! '2018-02-14 14:42:46.926484'
+    Status: A
+    Name: Lost Boy
+    Description: Words and Music by Ruth Berhe
+    Category: 1
+    Price: '7.00'
+- model: catalog.Product
   pk: 4
   fields:
     polymorphic_ctype: 11
-    create_date: ! '2018-02-14 14:43:51.033961'
-    last_modified: ! '2018-02-14 14:43:51.033977'
-    status: A
-    name: Rogue Starter Acoustic Guitar
-    description: The small-bodied Rogue Starter Acoustic Guitar is an amazing deal for a starter guitar. Its smaller profile (7/8" scale) makes it very playable for kids or aspiring guitarists with smaller body frames and hands. It has a maple neck and rosewood fretboard and Martin strings which help.give you a nice tone.
-    category: 2
-    price: '49.00'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:43:51.033961'
+    LastModified: ! '2018-02-14 14:43:51.033977'
+    Status: A
+    Name: Rogue Starter Acoustic Guitar
+    Description: The small-bodied Rogue Starter Acoustic Guitar is an amazing deal for a starter guitar. Its smaller profile (7/8" scale) makes it very playable for kids or aspiring guitarists with smaller body frames and hands. It has a maple neck and rosewood fretboard and Martin strings which help.give you a nice tone.
+    Category: 2
+    Price: '49.00'
+- model: catalog.Product
   pk: 5
   fields:
     polymorphic_ctype: 11
-    create_date: ! '2018-02-14 14:44:18.903639'
-    last_modified: ! '2018-02-14 14:44:18.903654'
-    status: A
-    name: Squier Bullet Stratocaster SSS Electric Guitar
-    description: The Bullet Stratocaster SSS Elecrtric Guitar with tremolo is a simple, affordable and practical guitar designed for students and beginners. It's a great choice for a first guitar no matter who you are or what style of music you want to learn. These models come with all the features that make the Bullet a great guitar to begin with but also with three exciting finishes you cant get on any other bullet. See for yourself how stunning this guitar looks in Candy Apple Red Seafoam Green and Lake Placid Blue. Chose the one you like most in the drop down menu.
-    category: 2
-    price: '169.00'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:44:18.903639'
+    LastModified: ! '2018-02-14 14:44:18.903654'
+    Status: A
+    Name: Squier Bullet Stratocaster SSS Electric Guitar
+    Description: The Bullet Stratocaster SSS Elecrtric Guitar with tremolo is a simple, affordable and practical guitar designed for students and beginners. It's a great choice for a first guitar no matter who you are or what style of music you want to learn. These models come with all the features that make the Bullet a great guitar to begin with but also with three exciting finishes you cant get on any other bullet. See for yourself how stunning this guitar looks in Candy Apple Red Seafoam Green and Lake Placid Blue. Chose the one you like most in the drop down menu.
+    Category: 2
+    Price: '169.00'
+- model: catalog.Product
   pk: 6
   fields:
     polymorphic_ctype: 10
-    create_date: ! '2018-02-14 14:45:11.399656'
-    last_modified: ! '2018-02-14 14:46:32.590448'
-    status: A
-    name: 25' Speaker Wire
-    description: 25 foot speaker wire. Copper.
-    category: 3
-    price: '7.99'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:45:11.399656'
+    LastModified: ! '2018-02-14 14:46:32.590448'
+    Status: A
+    Name: 25' Speaker Wire
+    Description: 25 foot speaker wire. Copper.
+    Category: 3
+    Price: '7.99'
+- model: catalog.Product
   pk: 7
   fields:
     polymorphic_ctype: 11
-    create_date: ! '2018-02-14 14:46:05.787901'
-    last_modified: ! '2018-02-14 14:46:05.787916'
-    status: A
-    name: 25' Gold Speaker Wire
-    description: 25 feet of pure gold wire for the best music ever.
-    category: 3
-    price: '799.95'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:46:05.787901'
+    LastModified: ! '2018-02-14 14:46:05.787916'
+    Status: A
+    Name: 25' Gold Speaker Wire
+    Description: 25 feet of pure gold wire for the best music ever.
+    Category: 3
+    Price: '799.95'
+- model: catalog.Product
   pk: 8
   fields:
     polymorphic_ctype: 12
-    create_date: ! '2018-02-14 14:48:56.997566'
-    last_modified: ! '2018-02-14 14:49:05.694355'
-    status: A
-    name: Mackle JS Speakers
-    description: 12" high-output woofer / 1.4" titanium dome compression driver. 1300W of ultra-efficient Class-D power. Next-generation system protection and thermal limiting keep your system safe
-    category: 3
-    price: '69.00'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:48:56.997566'
+    LastModified: ! '2018-02-14 14:49:05.694355'
+    Status: A
+    Name: Mackle JS Speakers
+    Description: 12" high-output woofer / 1.4" titanium dome compression driver. 1300W of ultra-efficient Class-D power. Next-generation system protection and thermal limiting keep your system safe
+    Category: 3
+    Price: '69.00'
+- model: catalog.Product
   pk: 9
   fields:
     polymorphic_ctype: 12
-    create_date: ! '2018-02-14 14:51:07.876354'
-    last_modified: ! '2018-02-14 14:53:14.790463'
-    status: A
-    name: 42' Winnebago Journey
-    description: Rock your music in style in this 42 foot diesel-powered beast.  The Winnebago Journey has the best in class speakers and has a 90" outdoor extendable TV.
-    category: 4
-    price: '4985.99'
-- model: catalog.product
+    CreateDate: ! '2018-02-14 14:51:07.876354'
+    LastModified: ! '2018-02-14 14:53:14.790463'
+    Status: A
+    Name: 42' Winnebago Journey
+    Description: Rock your music in style in this 42 foot diesel-powered beast.  The Winnebago Journey has the best in class speakers and has a 90" outdoor extendable TV.
+    Category: 4
+    Price: '4985.99'
+- model: catalog.Product
   pk: 10
   fields:
     polymorphic_ctype: 12
-    create_date: ! '2018-02-14 14:53:08.708361'
-    last_modified: ! '2018-02-14 14:53:08.708376'
-    status: A
-    name: Leopard 45
-    description: Founded upon the ethos of continuous innovation and feedback from cruising clients the new Leopard 45 sailing catamaran represents astute value elegant lines and satisfies blue water passion.  With naval architecture by Simonis & Voogd Yacht Design, and with exterior and interior design by the world-class design team at Robertson and Caine the Leopard 45 Sailing Catamaran not only builds on the best features of the current Leopard range but most notably offers new exterior styling and enhanced interior accommodation. The exterior styling has evolved from the more curvaceous deck features on the current Leopard range into a sharper, more angular look topped by a sleek new saloon hardtop which extends from aft cockpit to forward cockpit.  Available in a 3 or 4 cabin layout, the Leopard 45 offers the perfect entertainment package with increased aft area with new layout ergonomically designed open plan saloon and galley larger forward cockpit and more onboard area.
-    category: 4
-    price: '7850.25'
-- model: catalog.bulkproduct
+    CreateDate: ! '2018-02-14 14:53:08.708361'
+    LastModified: ! '2018-02-14 14:53:08.708376'
+    Status: A
+    Name: Leopard 45
+    Description: Founded upon the ethos of continuous innovation and feedback from cruising clients the new Leopard 45 sailing catamaran represents astute value elegant lines and satisfies blue water passion.  With naval architecture by Simonis & Voogd Yacht Design, and with exterior and interior design by the world-class design team at Robertson and Caine the Leopard 45 Sailing Catamaran not only builds on the best features of the current Leopard range but most notably offers new exterior styling and enhanced interior accommodation. The exterior styling has evolved from the more curvaceous deck features on the current Leopard range into a sharper, more angular look topped by a sleek new saloon hardtop which extends from aft cockpit to forward cockpit.  Available in a 3 or 4 cabin layout, the Leopard 45 offers the perfect entertainment package with increased aft area with new layout ergonomically designed open plan saloon and galley larger forward cockpit and more onboard area.
+    Category: 4
+    Price: '7850.25'
+- model: catalog.bulkProduct
   pk: 1
   fields:
-    quantity: 20
-    reorder_trigger: 10
-    reorder_quantity: 10
-- model: catalog.bulkproduct
+    Quantity: 20
+    ReorderTrigger: 10
+    ReorderQuantity: 10
+- model: catalog.bulkProduct
   pk: 2
   fields:
-    quantity: 25
-    reorder_trigger: 10
-    reorder_quantity: 5
-- model: catalog.bulkproduct
+    Quantity: 25
+    ReorderTrigger: 10
+    ReorderQuantity: 5
+- model: catalog.bulkProduct
   pk: 3
   fields:
-    quantity: 13
-    reorder_trigger: 4
-    reorder_quantity: 6
-- model: catalog.bulkproduct
+    Quantity: 13
+    ReorderTrigger: 4
+    ReorderQuantity: 6
+- model: catalog.bulkProduct
   pk: 6
   fields:
-    quantity: 5
-    reorder_trigger: 3
-    reorder_quantity: 3
-- model: catalog.individualproduct
+    Quantity: 5
+    ReorderTrigger: 3
+    ReorderQuantity: 3
+- model: catalog.individualProduct
   pk: 4
   fields:
-    pid: 12345X6
-- model: catalog.individualproduct
+    ItemID: 12345X6
+- model: catalog.individualProduct
   pk: 5
   fields:
-    pid: 5523JJ1
-- model: catalog.individualproduct
+    ItemID: 5523JJ1
+- model: catalog.individualProduct
   pk: 7
   fields:
-    pid: 555CRZY
-- model: catalog.rentalproduct
+    ItemID: 555CRZY
+- model: catalog.rentalProduct
   pk: 8
   fields:
-    pid: MACK12A
-    max_rental_days: 2
-    retire_date: null
-- model: catalog.rentalproduct
+    ItemID: MACK12A
+    MaxRental: 2
+    RetireDate: null
+- model: catalog.rentalProduct
   pk: 9
   fields:
-    pid: WINNY42
-    max_rental_days: 5
-    retire_date: null
-- model: catalog.rentalproduct
+    ItemID: WINNY42
+    MaxRental: 5
+    RetireDate: null
+- model: catalog.rentalProduct
   pk: 10
   fields:
-    pid: SAIL4EVER
-    max_rental_days: 14
-    retire_date: null
+    ItemID: SAIL4EVER
+    MaxRental: 14
+    RetireDate: null
+    
 - model: account.user
-  pk: 2
+  pk: 100
   fields:
-    # password is `lisa`
-    password: pbkdf2_sha256$100000$MWfxgA4PlQE2$qBGRUKJ0o0lV6w5DxoS4iXKMitBVugkse4pEGLCH9dc=
-    last_login: null
+    password: pbkdf2_sha256$100000$KOFXqrcHEfcq$7JBNRo7PsNtenp1TTlHVhdDnTfHl8FNN6UthHLeTFME=
+    last_login: 2018-01-29 17:42:37.885221+00:00
     is_superuser: true
-    email: lisa@simpsons.com
-    first_name: Lisa
-    last_name: Simpson
+    email: patrikdrean@gmail.com
+    first_name: Patrik
+    last_name: Drean
     is_staff: true
     is_active: true
-    date_joined: 2018-02-14 14:54:35.081576
-    birthdate: null
+    date_joined: 2018-01-29 17:42:15.274082+00:00
     address: null
-    city: null
     state: null
-    zipcode: null
+    zip: null
     groups: []
     user_permissions: []
-- model: account.user
-  pk: 3
-  fields:
-    # password is `bart`
-    password: pbkdf2_sha256$100000$e5ELk8WanUOx$3T+Ymd/EWEK2t+iLeGbwcIJL5ru7qzyAijWy16weXRk=
-    last_login: null
-    is_superuser: false
-    email: bart@simpsons.com
-    first_name: Bart
-    last_name: Simpson
-    is_staff: false
-    is_active: true
-    date_joined: 2018-02-14 14:55:27.624182
-    birthdate: null
-    address: null
-    city: null
-    state: null
-    zipcode: null
-    groups: []
-    user_permissions: []
+
+# - model: account.user
+#   pk: 2
+#   fields:
+#     # password is `lisa`
+#     password: pbkdf2_sha256$100000$MWfxgA4PlQE2$qBGRUKJ0o0lV6w5DxoS4iXKMitBVugkse4pEGLCH9dc=
+#     last_login: null
+#     is_superuser: true
+#     email: lisa@simpsons.com
+#     first_Name: Lisa
+#     last_Name: Simpson
+#     is_staff: true
+#     is_active: true
+#     date_joined: 2018-02-14 14:54:35.081576
+#     birthdate: null
+#     address: null
+#     city: null
+#     state: null
+#     zipcode: null
+#     groups: []
+#     user_permissions: []
+# - model: account.user
+#   pk: 3
+#   fields:
+#     # password is `bart`
+#     password: pbkdf2_sha256$100000$e5ELk8WanUOx$3T+Ymd/EWEK2t+iLeGbwcIJL5ru7qzyAijWy16weXRk=
+#     last_login: null
+#     is_superuser: false
+#     email: bart@simpsons.com
+#     first_Name: Bart
+#     last_Name: Simpson
+#     is_staff: false
+#     is_active: true
+#     date_joined: 2018-02-14 14:55:27.624182
+#     birthdate: null
+#     address: null
+#     city: null
+#     state: null
+#     zipcode: null
+#     groups: []
+#     user_permissions: []

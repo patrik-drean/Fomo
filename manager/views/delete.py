@@ -6,11 +6,10 @@ from catalog import models as cmod
 
 
 @view_function
-def process_request(request, productID = -1):
+def process_request(request, deactivatedProduct:cmod.Product):
 
     context = {}
-    deactivatedProduct = cmod.Product.objects.get(id=productID)
     deactivatedProduct.Status = 'I'
     deactivatedProduct.save()
-    
+
     return redirect('/manager/')

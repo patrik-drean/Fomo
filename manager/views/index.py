@@ -12,6 +12,5 @@ def process_request(request):
     context = {
     'activeProducts': activeProducts,
     }
-    print('>>>>>>>>>>>>' + activeProducts[0].Name)
 
     return request.dmp_render('index.html', context)
