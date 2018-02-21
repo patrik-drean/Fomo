@@ -140,7 +140,26 @@ class CreateForm(Formless):
         return self.cleaned_data
 
     def commit(self):
-        pass
+        ''' Save the product if it's new. Get the product and change it if it's edit.'''
+        type = self.cleaned_data.get('Type')
+        # Create the product
+        if (self.product_id < 0):
+            category = cmod.Category.objects.get(Name = self.cleaned_data.get('Category'))
+            if type == 'BulkProduct':
+                bProduct = cmod.BulkProduct()
+                bProduct.new_object('hey', 'hey', category, 32)
+                print('>>>>>>>>>>>>>' + bProduct.Category.Description)
+            if type == 'IndividualProduct':
+                pass
+            if type == 'RentalProduct':
+                pass
+
+        # Edit the product
+        else:
+            self.fields['Type'] = forms.CharField(initial = self.product.TITLE,
+                                                widget = forms.HiddenInput(),
+                                                        )
+
         # user = amod.User()
         # user.email = self.cleaned_data.get("email")
         # user.set_password(self.cleaned_data.get("password"))

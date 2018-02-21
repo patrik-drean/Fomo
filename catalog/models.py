@@ -32,6 +32,14 @@ class Product(PolymorphicModel):
     LastModified = models.DateTimeField(auto_now=True)
     Status = models.TextField(choices=STATUS_CHOICES, default='A')
 
+    def new_object(self, name = '', description = '', category = None, price = 0):
+        self.Name = name
+        self.Description = description
+        self.Category = category
+        self.Price = price
+
+
+
 class BulkProduct(Product):
     TITLE = 'BulkProduct'
     Quantity = models.IntegerField()
