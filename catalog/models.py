@@ -33,17 +33,17 @@ class Product(PolymorphicModel):
     Status = models.TextField(choices=STATUS_CHOICES, default='A')
 
 class BulkProduct(Product):
-    TITLE = 'Bulk'
+    TITLE = 'BulkProduct'
     Quantity = models.IntegerField()
     ReorderTrigger = models.IntegerField()
     ReorderQuantity = models.IntegerField()
 
 class IndividualProduct(Product):
-    TITLE = 'Individual'
+    TITLE = 'IndividualProduct'
     ItemID = models.TextField()
 
 class RentalProduct(Product):
-    TITLE = 'Rental'
+    TITLE = 'RentalProduct'
     ItemID = models.TextField()
     MaxRental = models.IntegerField()
     RetireDate = models.DateTimeField(null=True, blank=True)

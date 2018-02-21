@@ -9,6 +9,7 @@ from catalog import models as cmod
 def process_request(request, deactivatedProduct:cmod.Product):
 
     context = {}
+    # deactivatedProduct = cmod.Product.objects.get(id=productID)
     deactivatedProduct.Status = 'I'
     deactivatedProduct.save()
 
