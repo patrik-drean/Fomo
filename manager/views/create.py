@@ -141,21 +141,26 @@ class CreateForm(Formless):
 
     def commit(self):
         ''' Save the product if it's new. Get the product and change it if it's edit.'''
+
+        # Get all the generic data
         type = self.cleaned_data.get('Type')
+        category = cmod.Category.objects.get(Name = self.cleaned_data.get('Category'))
+        name = self.cleaned_data.get('Name')
+        description = self.cleaned_data.get('Description')
+        price = self.cleaned_data.get('Price')
+        qty = self.cleaned_data.get('Quantity')
+        reorderTrigger = self.cleaned_data.get('ReorderTrigger')
+        reorderQuantity = self.cleaned_data.get('ReorderQuantity')
+        itemID = self.cleaned_data.get('ItemID')
+        maxRental = self.cleaned_data.get('MaxRental')
+        RetireDate = self.cleaned_data.get('RetireDate')
+
         # Create the product
         if (self.product_id < 0):
-
-            category = cmod.Category.objects.get(Name = self.cleaned_data.get('Category'))
-            name = self.cleaned_data.get('Name')
-            description = self.cleaned_data.get('Description')
-            price = self.cleaned_data.get('Price')
-            status = self.cleaned_data.get('Status')
-
             if type == 'BulkProduct':
                 bProduct = cmod.BulkProduct()
                 bProduct.new_object( name, description, category, price, status)
-                print('>>>>>>>>>>>>>' + bProduct.Category.Description)
-                print('>>>>>>>>>>>>>' + bProduct.Status)
+
             if type == 'IndividualProduct':
                 pass
             if type == 'RentalProduct':
