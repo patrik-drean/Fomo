@@ -90,17 +90,17 @@ class CreateForm(Formless):
             # Rental fields
             if self.product.TITLE == 'RentalProduct':
                 self.fields['MaxRental'] = forms.CharField(label="Max Rental Days", initial = self.product.MaxRental, required = False)
-                self.fields['RetireDate'] = forms.DateField(label='Retire Date', initial = self.product.RetireDate, required = False)
+                self.fields['RetireDate'] = forms.DateField(label='Retire Date (yyyy-mm-dd)', initial = self.product.RetireDate, required = False)
             else:
                 self.fields['MaxRental'] = forms.CharField(label="Max Rental Days",required = False)
-                self.fields['RetireDate'] = forms.DateField(label="Retire Date",required = False)
+                self.fields['RetireDate'] = forms.DateField(label="Retire Date (yyyy-mm-dd)",required = False)
         else:
             self.fields['Quantity'] = forms.CharField(label="Quantity",required = False)
             self.fields['ReorderTrigger'] = forms.CharField(label="Reorder Trigger",required = False)
             self.fields['ReorderQuantity'] = forms.CharField(label="Reorder Quantity",required = False)
             self.fields['ItemID'] = forms.CharField(label="ItemID",required = False)
             self.fields['MaxRental'] = forms.CharField(label="Max Rental Days",required = False)
-            self.fields['RetireDate'] = forms.DateField(label="Retire Day",required = False)
+            self.fields['RetireDate'] = forms.DateField(label="Retire Date (yyyy-mm-dd)",required = False)
 
         self.submit_text = 'Submit'
 
@@ -148,38 +148,45 @@ class CreateForm(Formless):
         name = self.cleaned_data.get('Name')
         description = self.cleaned_data.get('Description')
         price = self.cleaned_data.get('Price')
+        status = self.cleaned_data.get('Status')
         qty = self.cleaned_data.get('Quantity')
         reorderTrigger = self.cleaned_data.get('ReorderTrigger')
         reorderQuantity = self.cleaned_data.get('ReorderQuantity')
         itemID = self.cleaned_data.get('ItemID')
         maxRental = self.cleaned_data.get('MaxRental')
-        RetireDate = self.cleaned_data.get('RetireDate')
+        retireDate = self.cleaned_data.get('RetireDate')
 
         # Create the product
-        if (self.product_id < 0):
-            if type == 'BulkProduct':
+        if type == 'BulkProduct':
+            if self.product_id < 0:
                 bProduct = cmod.BulkProduct()
-                bProduct.new_object( name, description, category, price, status)
+            else:
+                bProduct = self.product
+            bProduct.new_object( name, description, category, price, status)
+            bProduct.Quantity = qty
+            bProduct.ReorderTrigger = reorderTrigger
+            bProduct.ReorderQuantity = reorderQuantity
 
-            if type == 'IndividualProduct':
-                pass
-            if type == 'RentalProduct':
-                pass
+            bProduct.save()
 
-        # Edit the product
-        else:
-            self.fields['Type'] = forms.CharField(initial = self.product.TITLE,
-                                                widget = forms.HiddenInput(),
-                                                        )
+        if type == 'IndividualProduct':
+            if self.product_id < 0:
+                iProduct = cmod.IndividualProduct()
+            else:
+                iProduct = self.product
+            iProduct.new_object( name, description, category, price, status)
+            iProduct.ItemID = itemID
 
-        # user = amod.User()
-        # user.email = self.cleaned_data.get("email")
-        # user.set_password(self.cleaned_data.get("password"))
-        # user.address = self.cleaned_data.get("address")
-        # user.state = self.cleaned_data.get("state")
-        # user.zip = self.cleaned_data.get("zip")
-        #
-        # user.save()
-        #
-        # user = authenticate(email = user.email, password = self.cleaned_data.get("password"))
-        # login(self.request, user)
+            iProduct.save()
+
+        if type == 'RentalProduct':
+            if self.product_id < 0:
+                rProduct = cmod.RentalProduct()
+            else:
+                rProduct = self.product
+            rProduct.new_object( name, description, category, price, status)
+            rProduct.ItemID = itemID
+            rProduct.MaxRental = maxRental
+            rProduct.RetireDate = retireDate
+
+            rProduct.save()

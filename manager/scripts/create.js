@@ -1,48 +1,58 @@
+function change_fields(productChoice, time = 0) {
+   console.log(productChoice)
+   if (productChoice == 'BulkProduct')
+   {
+      $('#id_ItemID').closest('p').hide(time);
+      $('#id_MaxRental').closest('p').hide(time);
+      $('#id_RetireDate').closest('p').hide(time);
+
+      $('#id_Quantity').closest('p').show(time);
+      $('#id_ReorderTrigger').closest('p').show(time);
+      $('#id_ReorderQuantity').closest('p').show(time);
+   }
+
+   else if (productChoice == 'IndividualProduct')
+   {
+      $('#id_MaxRental').closest('p').hide(time);
+      $('#id_RetireDate').closest('p').hide(time);
+      $('#id_Quantity').closest('p').hide(time);
+      $('#id_ReorderTrigger').closest('p').hide(time);
+      $('#id_ReorderQuantity').closest('p').hide(time);
+
+      $('#id_ItemID').closest('p').show(time);
+   }
+
+   else if (productChoice == 'RentalProduct')
+   {
+      $('#id_Quantity').closest('p').hide(time);
+      $('#id_ReorderTrigger').closest('p').hide(time);
+      $('#id_ReorderQuantity').closest('p').hide(time);
+
+      $('#id_ItemID').closest('p').show(time);
+      $('#id_MaxRental').closest('p').show(time);
+      $('#id_RetireDate').closest('p').show(time);
+   }
+   else
+   {
+      $('#id_ItemID').closest('p').hide(time);
+      $('#id_MaxRental').closest('p').hide(time);
+      $('#id_RetireDate').closest('p').hide(time);
+
+   }
+}
+
 // delayed
 // closure (for scope)
-
 $(function() {
+
    // Hide initial Fields
-   $('#id_ItemID').closest('p').hide()
-   $('#id_MaxRental').closest('p').hide()
-   $('#id_RetireDate').closest('p').hide()
+   var productChoice= $('#id_Type');
+   change_fields(productChoice.val())
+
 
    // Hide fields based on product type
-   var productChoice = $('#id_Type');
    productChoice.on('change', function() {
-      console.log(productChoice.val())
-      if (productChoice.val() == 'BulkProduct')
-      {
-         $('#id_ItemID').closest('p').hide(1000)
-         $('#id_MaxRental').closest('p').hide(1000)
-         $('#id_RetireDate').closest('p').hide(1000)
-
-         $('#id_Quantity').closest('p').show(1000)
-         $('#id_ReorderTrigger').closest('p').show(1000)
-         $('#id_ReorderQuantity').closest('p').show(1000)
-      }
-
-      else if (productChoice.val() == 'IndividualProduct')
-      {
-         $('#id_MaxRental').closest('p').hide(1000)
-         $('#id_RetireDate').closest('p').hide(1000)
-         $('#id_Quantity').closest('p').hide(1000)
-         $('#id_ReorderTrigger').closest('p').hide(1000)
-         $('#id_ReorderQuantity').closest('p').hide(1000)
-
-         $('#id_ItemID').closest('p').show(1000)
-      }
-
-      else if (productChoice.val() == 'RentalProduct')
-      {
-         $('#id_Quantity').closest('p').hide(1000)
-         $('#id_ReorderTrigger').closest('p').hide(1000)
-         $('#id_ReorderQuantity').closest('p').hide(1000)
-
-         $('#id_ItemID').closest('p').show(1000)
-         $('#id_MaxRental').closest('p').show(1000)
-         $('#id_RetireDate').closest('p').show(1000)
-      }
+      change_fields(productChoice.val(), 800)
    })
 
 }
