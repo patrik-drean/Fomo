@@ -32,12 +32,12 @@ class Product(PolymorphicModel):
     LastModified = models.DateTimeField(auto_now=True)
     Status = models.TextField(choices=STATUS_CHOICES, default='A')
 
-    def new_object(self, name = '', description = '', category = None, price = 0):
+    def new_object(self, name = '', description = '', category = None, price = 0, status = 'A'):
         self.Name = name
         self.Description = description
         self.Category = category
         self.Price = price
-
+        self.Status = status
 
 
 class BulkProduct(Product):

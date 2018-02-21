@@ -144,11 +144,18 @@ class CreateForm(Formless):
         type = self.cleaned_data.get('Type')
         # Create the product
         if (self.product_id < 0):
+
             category = cmod.Category.objects.get(Name = self.cleaned_data.get('Category'))
+            name = self.cleaned_data.get('Name')
+            description = self.cleaned_data.get('Description')
+            price = self.cleaned_data.get('Price')
+            status = self.cleaned_data.get('Status')
+
             if type == 'BulkProduct':
                 bProduct = cmod.BulkProduct()
-                bProduct.new_object('hey', 'hey', category, 32)
+                bProduct.new_object( name, description, category, price, status)
                 print('>>>>>>>>>>>>>' + bProduct.Category.Description)
+                print('>>>>>>>>>>>>>' + bProduct.Status)
             if type == 'IndividualProduct':
                 pass
             if type == 'RentalProduct':
