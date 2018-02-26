@@ -1,5 +1,4 @@
 function change_fields(productChoice, time = 0) {
-   console.log(productChoice)
    if (productChoice == 'BulkProduct')
    {
       $('#id_ItemID').closest('p').hide(time);
