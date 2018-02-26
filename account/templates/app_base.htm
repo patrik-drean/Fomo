@@ -3,11 +3,11 @@
 <!-- Block for the navbar links -->
 <%block name="navbar_links">
 <ul class="nav navbar-nav">
-  <li ><a href=".." class = "${ 'active' if request.dmp_router_page == 'index' else ''}"}>Home</a></li>
-  <li><a href="/about/" class = "${ 'active' if request.dmp_router_page == 'about' else ''}">About</a></li>
-  <li><a href="/contact/" class = "${ 'active' if request.dmp_router_page == 'contact' else ''}">Contact</a></li>
-  <li><a href="/faq/" class = "${ 'active' if request.dmp_router_page == 'faq' else ''}">FAQ</a></li>
-  <li><a href="/terms/" class = "${ 'active' if request.dmp_router_page == 'terms' else ''}">Terms</a></li>
-   <li><a href="/sections/" class = "${ 'active' if request.dmp_router_page == 'sections' else ''}">Sections</a></li>
+  <li ><a href=".." class = "${ 'active' if request.dmp.page == 'index' else ''}"}>Home</a></li>
+  <li><a href="/about/" class = "${ 'active' if request.dmp.page == 'about' else ''}">About</a></li>
+  <li><a href="/contact/" class = "${ 'active' if request.dmp.page == 'contact' else ''}">Contact</a></li>
+  <li><a href="/faq/" class = "${ 'active' if request.dmp.page == 'faq' else ''}">FAQ</a></li>
+  <li><a href="/terms/" class = "${ 'active' if request.dmp.page == 'terms' else ''}">Terms</a></li>
+   <li><a href="/sections/" class = "${ 'active' if request.dmp.page == 'sections' else ''}">Sections</a></li>
 </ul>
 </%block>

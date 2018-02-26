@@ -13,4 +13,4 @@ def process_request(request):
     'activeProducts': activeProducts,
     }
 
-    return request.dmp_render('index.html', context)
+    return request.dmp.render('index.html', context)
