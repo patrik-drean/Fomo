@@ -1,18 +1,24 @@
+h1 {
+   font-weight: 900 !important;
+   margin-left: 30px;
+}
+
 .question, .answer {
-   border: .5px solid #B24B59;
+   border: 2px solid #B24B59;
    text-align: center;
    height: 80px;
-   line-height: 100px;
+}
+.question {
+   width: 450px;
 }
 .answer {
-   text-align: left;
+   width: 647px;
 }
 
 span {
   display: inline-block;
   vertical-align: middle;
 }
-h3, h4 {
-   margin: 20px 10px;
-   padding: 0;
+#faq_wrapper {
+   margin-left: 15px;
 }

@@ -2,8 +2,11 @@
   padding: 5px 25px;
   text-align: justify;
 }
-h2 {
+h1 {
   margin: 10px auto;
   width: 800px;
   text-align: center;
+}
+p {
+   font-size: 1.5em;
 }

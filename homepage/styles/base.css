@@ -3,6 +3,12 @@ html, body {
   padding: 0;
   min-height: 100%;
 }
+h1 {
+   font-family: 'Krona One', sans-serif;
+}
+p {
+   font-size: 1.3em;
+}
 
 header {
   background-color: #147871;

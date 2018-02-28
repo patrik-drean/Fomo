@@ -39,6 +39,17 @@ class Product(PolymorphicModel):
         self.Price = price
         self.Status = status
 
+    # convenience method
+    def image_url(self):
+        ''' Always return an image '''
+        url = settings.STATIC_URL + '/catalog/media/products' + Filename
+
+        #return image_unavailable.gif
+
+    def image_urls(self):
+        '''Returns a list of all images for that product'''
+
+        #return image_unavailable.gif
 
 class BulkProduct(Product):
     TITLE = 'BulkProduct'
@@ -56,15 +67,8 @@ class RentalProduct(Product):
     MaxRental = models.IntegerField()
     RetireDate = models.DateTimeField(null=True, blank=True)
 
-
-
-
-    # Product Types
-    #     Category
-    #         Name, Description, Create Date, Last Modified
-    #     Bulk Product
-    #         Name, Description, Category, Price, Create Date, Last Modified, Quantity, Reorder Trigger, Reorder Quantity
-    #     Individual Product
-    #         Name, Description, Category, Price, Create Date, Last Modified, Item ID
-    #     Rental Product
-    #         Name, Description, Category, Price, Create Date, Last Modified, Item ID, Max Rental, Retire Date
+class ProductImage(models.Model):
+    Filename = models.TextField()
+    Product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    CreateDate = models.DateTimeField(auto_now_add=True)
+    LastModified = models.DateTimeField(auto_now=True)

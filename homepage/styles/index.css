@@ -1,5 +1,32 @@
-.jumbotron {
+/* .jumbotron {
   width: 850px;
   margin: 0 auto 0 !important;
   text-align: center;
+} */
+html, body {
+   background: url(../media/img/music-background.jpg) no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+footer {
+   display:none;;
+}
+h1 {
+   color: white;
+   padding: 10px;
+   text-align: center;
+   font-size: 2em;
+}
+#landing_div {
+   background-color:  black !important;
+   width: 500px;
+   length: 50px;
+   border-radius: 20px;
+   text-align: center;
+}
+.btn {
+   margin: 2px auto 20px auto !important;
+   font-size: 1.5em;
 }
