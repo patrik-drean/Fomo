@@ -38,6 +38,7 @@
 </head>
 
 <body>
+   <%block name="skip_content"></%block>
      <div class="col-md-12" id="maintenance-section">
        <%block name="maintenance_content"></%block>
      </div>
@@ -52,7 +53,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-          <a class="navbar-brand" href="#"><img src = "${ STATIC_URL }homepage/media/img/logo28.png"  /> </a>
+          <a class="navbar-brand" href="#"><img src = "${ STATIC_URL }homepage/media/img/logo28.png"  alt = "Brand logo"/> </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

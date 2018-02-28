@@ -11,7 +11,9 @@ html, body {
    background-size: cover;
 }
 footer {
-   display:none;;
+   background-color: white;
+   margin-top: 300px !important;
+   height: 800px;
 }
 h1 {
    color: white;
@@ -29,4 +31,35 @@ h1 {
 .btn {
    margin: 2px auto 20px auto !important;
    font-size: 1.5em;
+}
+.date-footer {
+   display: none;
+}
+.product_card {
+   margin: 0 auto;
+}
+.product_card_header {
+   width: 450px;
+   height: 180px;
+   text-align: center;
+}
+
+.product_card_content {
+   width: 647px;
+   height: 180px;
+}
+.product_card_content p {
+   width: 647px;
+   height: 180px;
+}
+a {
+   color: #A44552;
+   font-weight: 900;
+}
+a:hover {
+   color: #B1B94E;
+}
+#skip_tag {
+   color: white;
+   display: none;
 }
