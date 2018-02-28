@@ -49,8 +49,8 @@ print('Creating categories...')
 categories = []
 for catname in ( 'Instruments', 'Sheet Music', 'Electronics', 'Software', 'Lesson Books' ):
     c = cmod.Category()
-    c.name = catname
-    c.description = 'This is a category named {}'.format(catname)
+    c.Name = catname
+    c.Description = 'This is a category named {}'.format(catname)
     c.save()
     categories.append(c)
 
@@ -58,33 +58,33 @@ for catname in ( 'Instruments', 'Sheet Music', 'Electronics', 'Software', 'Lesso
 print('Creating products...')
 for i in range(1, 25):
     p = cmod.BulkProduct()
-    p.name = 'unset'  # see image adding below
-    p.description = 'unset'
-    p.category = random.choice(categories)
-    p.status = 'A'
-    p.price = random.uniform(1, 1000)
-    p.reorder_trigger = random.randint(5, 15)
-    p.quantity = random.randint(p.reorder_trigger, 2 * p.reorder_trigger)
-    p.reorder_quantity = p.reorder_trigger * 2
+    p.Name = 'unset'  # see image adding below
+    p.Description = 'unset'
+    p.Category = random.choice(categories)
+    p.Status = 'A'
+    p.Price = random.uniform(1, 1000)
+    p.ReorderTrigger = random.randint(5, 15)
+    p.Quantity = random.randint(p.ReorderTrigger, 2 * p.ReorderTrigger)
+    p.ReorderQuantity = p.ReorderTrigger * 2
     p.save()
 for i in range(1, 25):
     p = cmod.RentalProduct()
-    p.name = 'unset'  # see image adding below
-    p.description = 'unset'
-    p.category = random.choice(categories)
-    p.status = 'A'
-    p.price = random.uniform(1, 1000)
-    p.pid = ''.join([ random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789012345678901234567890123456789') for j in range(6) ])
-    p.max_rental_days = random.randint(1, 10)
+    p.Name = 'unset'  # see image adding below
+    p.Description = 'unset'
+    p.Category = random.choice(categories)
+    p.Status = 'A'
+    p.Price = random.uniform(1, 1000)
+    p.ItemID = ''.join([ random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789012345678901234567890123456789') for j in range(6) ])
+    p.MaxRental = random.randint(1, 10)
     p.save()
 for i in range(1, 25):
     p = cmod.IndividualProduct()
-    p.name = 'unset'  # see image adding below
-    p.description = 'unset'
-    p.category = random.choice(categories)
-    p.status = 'A'
-    p.price = random.uniform(1, 1000)
-    p.pid = ''.join([ random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789012345678901234567890123456789') for j in range(6) ])
+    p.Name = 'unset'  # see image adding below
+    p.Description = 'unset'
+    p.Category = random.choice(categories)
+    p.Status = 'A'
+    p.Price = random.uniform(1, 1000)
+    p.ItemID = ''.join([ random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789012345678901234567890123456789') for j in range(6) ])
     p.save()
 
 
@@ -106,13 +106,13 @@ images = cycle(filenames)
 for product in cmod.Product.objects.all():
     for i in range(random.randint(1, 5)):
         pi = cmod.ProductImage()
-        pi.filename = next(images)
-        pi.product = product
+        pi.Filename = next(images)
+        pi.Product = product
         pi.save()
         if i == 0:
-            name, _ = os.path.splitext(pi.filename)
+            name, _ = os.path.splitext(pi.Filename)
             product.name = ' '.join(( s.capitalize() for s in name.split('_') ))
-            product.description = '<p>This item is an individual product named %s.<p><p>%s</p>' % (product.name, LOREM_IPSUM)
+            product.Description = '<p>This item is an individual product named %s.<p><p>%s</p>' % (product.Name, LOREM_IPSUM)
             product.save()
 
 # remove the images from the first product

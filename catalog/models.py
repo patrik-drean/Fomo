@@ -48,7 +48,7 @@ class Product(PolymorphicModel):
 
     def image_urls(self):
         '''Returns a list of all images for that product'''
-
+        pass
         #return image_unavailable.gif
 
 class BulkProduct(Product):
