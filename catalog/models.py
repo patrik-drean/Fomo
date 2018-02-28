@@ -40,16 +40,25 @@ class Product(PolymorphicModel):
         self.Status = status
 
     # convenience method
-    def image_url(self):
+    def image_url(self, id):
         ''' Always return an image '''
-        url = settings.STATIC_URL + '/catalog/media/products' + Filename
+        product = ProductImage.objects.all().filter(Product_id = id).first()
+        if product is not None:
+            url = '/static/catalog/media/products/' + product.Filename
+        else:
+            url = '/static/catalog/media/products/image_unavailable.gif'
+        return url
 
-        #return image_unavailable.gif
-
-    def image_urls(self):
+    def image_urls(self, id):
         '''Returns a list of all images for that product'''
-        pass
-        #return image_unavailable.gif
+        product = ProductImage.objects.all().filter(Product_id = id)
+        urls = []
+        if product is not None:
+            for i in product.images:
+                urls.append('/static/catalog/media/products/' + i.Filename)
+        else:
+            urls.append('/static/catalog/media/products/image_unavailable.gif')
+        return urls
 
 class BulkProduct(Product):
     TITLE = 'BulkProduct'

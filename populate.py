@@ -111,7 +111,7 @@ for product in cmod.Product.objects.all():
         pi.save()
         if i == 0:
             name, _ = os.path.splitext(pi.Filename)
-            product.name = ' '.join(( s.capitalize() for s in name.split('_') ))
+            product.Name = ' '.join(( s.capitalize() for s in name.split('_') ))
             product.Description = '<p>This item is an individual product named %s.<p><p>%s</p>' % (product.Name, LOREM_IPSUM)
             product.save()
 
