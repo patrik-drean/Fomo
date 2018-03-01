@@ -1,9 +1,20 @@
 <%inherit file="/homepage/templates/app_base.htm" />
 
 <%block name="left_content">
+<br />
+<br />
+<br />
+<br />
 
+<ul id="catalog">
+   <a><li>All Products</li></a>
+   % for c in categories:
+   <a><li>${ c.Name }</li></a>
+   % endfor
+</ul>
 </%block>
 <%block name="middle_content">
+<h1 class="text-center">Product</h1>
 <img src="${ products[0].image_url(167) }" />
 
 </%block>

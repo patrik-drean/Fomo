@@ -6,6 +6,7 @@ from catalog import models as cmod
 @view_function
 def process_request(request):
     products = cmod.Product.objects.all()
-
-    context = {'products': products}
+    categories = cmod.Category.objects.all()
+    context = {'products': products,
+                'categories': categories,}
     return request.dmp.render('index.html', context)

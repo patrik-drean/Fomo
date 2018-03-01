@@ -51,10 +51,10 @@ class Product(PolymorphicModel):
 
     def image_urls(self, id):
         '''Returns a list of all images for that product'''
-        product = ProductImage.objects.all().filter(Product_id = id)
+        product = Product.objects.all().filter(id = id).first()
         urls = []
         if product is not None:
-            for i in product.images:
+            for i in product.images.all():
                 urls.append('/static/catalog/media/products/' + i.Filename)
         else:
             urls.append('/static/catalog/media/products/image_unavailable.gif')
