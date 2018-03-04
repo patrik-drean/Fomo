@@ -15,9 +15,7 @@
 </%block>
 <%block name="middle_content">
 <div id='catalog_container'>
-
+   <ul id='catalog'></ul>
 </div>
-<h1 class="text-center">${ 'Products' if category is None else category.Name }</h1>
-<img src="${ products[0].image_url(167) }" /> ${ products[0].Category_id}
 
 </%block>
