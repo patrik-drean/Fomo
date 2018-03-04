@@ -1,4 +1,14 @@
-#catalog {
+#catalog_list {
    list-style-type: none;
    font-size: 1.5em;
+}
+.active  {
+  color: #B4B94E;
+  font-weight: 800;
+}
+#catalog_container {
+
+}
+#catalog {
+
 }

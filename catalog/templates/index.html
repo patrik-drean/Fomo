@@ -6,15 +6,18 @@
 <br />
 <br />
 
-<ul id="catalog">
-   <a><li>All Products</li></a>
+<ul id="catalog_list">
+   <a href="/catalog/"><li class="${ 'active' if category is None else ''}">All Products</li></a>
    % for c in categories:
-   <a><li>${ c.Name }</li></a>
+   <a href="/catalog/index/${c.id}"><li class="${ 'active' if c == category else ''}">${ c.Name }</li></a>
    % endfor
 </ul>
 </%block>
 <%block name="middle_content">
-<h1 class="text-center">Product</h1>
-<img src="${ products[0].image_url(167) }" />
+<div id='catalog_container'>
+
+</div>
+<h1 class="text-center">${ 'Products' if category is None else category.Name }</h1>
+<img src="${ products[0].image_url(167) }" /> ${ products[0].Category_id}
 
 </%block>
