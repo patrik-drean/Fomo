@@ -1,2 +1,15 @@
-<h1 class="text-center">${ 'Products' if category is None else category.Name }</h1>
-<img src="${ products[0].image_url(167) }" /> ${ products[0].Category_id}
+<div id="pagination" class="pull-right">
+   <a onclick="changeFunction(-1); return false;"><i class="fas fa-angle-double-left"></i></a>
+   <p class="">Page <span id='currentPageNumber'>${ int(pageid) }</span> of ${ totalPageCount }</p>
+   <a onclick="changeFunction(1); return false;"><i class="fas fa-angle-double-right"></i></a>
+</div>
+
+<br /><br />
+% for p in sixProducts:
+<li class="catalog_item">
+     <img class="product_img" src="${ p.image_url(p.id) }" />
+     <p class="price_label">${ p.Price }</p>
+     <p class="product_name">${ p.Name }</p>
+     <p class="category_name">${ p.Category.Name }</p>
+</li>
+% endfor
