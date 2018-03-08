@@ -35,7 +35,6 @@ def products(request, categoryid = 0, pageid:int = 1):
 
     # Divide the products up to show total pages and only display 6 products
     totalPageCount = int(len(products) / 6) + 1
-
     sixProducts = []
 
     if pageid == totalPageCount:
