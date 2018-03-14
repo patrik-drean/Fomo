@@ -1,0 +1,28 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%! from catalog import models as cmod %>
+<!-- Block for the navbar links -->
+<%block name="navbar_links">
+<ul class="nav navbar-nav">
+  <li ><a href=".." class = "${ 'active' if request.dmp.app == 'homepage' else ''}"}>Home</a></li>
+  <li><a href="/about/" class = "${ 'active' if request.dmp.page == 'about' else ''}">About</a></li>
+  <li><a href="/contact/" class = "${ 'active' if request.dmp.page == 'contact' else ''}">Contact</a></li>
+  <li><a href="/faq/" class = "${ 'active' if request.dmp.page == 'faq' else ''}">FAQ</a></li>
+  <li><a href="/terms/" class = "${ 'active' if request.dmp.page == 'terms' else ''}">Terms</a></li>
+   <li><a href="/catalog/" class = "${ 'active' if request.dmp.app == 'catalog' else ''}">View Products</a></li>
+</ul>
+</%block>
+
+<%block name="left_content">
+<br />
+<br />
+<br />
+<br />
+
+<ul id="catalog_list">
+   <a href="/catalog/"><li class="${ 'active' if category is None else ''}">All Products</li></a>
+   % for c in cmod.Category.objects.all():
+   <a href="/catalog/index/${c.id}"><li class="${ 'active' if c == category else ''}">${ c.Name }</li></a>
+   % endfor
+</ul>
+</%block>

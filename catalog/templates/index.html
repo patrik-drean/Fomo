@@ -1,18 +1,6 @@
-<%inherit file="/homepage/templates/app_base.htm" />
+<%inherit file="app_base.htm" />
 
-<%block name="left_content">
-<br />
-<br />
-<br />
-<br />
 
-<ul id="catalog_list">
-   <a href="/catalog/"><li class="${ 'active' if category is None else ''}">All Products</li></a>
-   % for c in categories:
-   <a href="/catalog/index/${c.id}"><li class="${ 'active' if c == category else ''}">${ c.Name }</li></a>
-   % endfor
-</ul>
-</%block>
 <%block name="middle_content">
 <h1 class="text-center">${ 'Products' if category is None else category.Name }</h1>
 <div id='catalog_container'>

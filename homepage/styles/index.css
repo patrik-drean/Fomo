@@ -52,14 +52,14 @@ h1 {
    width: 647px;
    height: 180px;
 }
+#skip_tag {
+   color: white;
+   display: none;
+}
 a {
    color: #A44552;
    font-weight: 900;
 }
 a:hover {
-   color: #B1B94E;
-}
-#skip_tag {
-   color: white;
-   display: none;
+   color: #B1B94E !important;
 }
