@@ -1,7 +1,18 @@
-<%inherit file="app_base.htm" />
+<%inherit file='app_base.htm' />
 
 
-<%block name="middle_content">
-
-
+<%block name='middle_content'>
+<h1 class='text-center'>${ product.Name }</h1>
+<ul id='thumbnail_div'>
+   %for p in product.image_urls(product.id):
+      <li><img class='thumbnail_img' src='${p}' alt='thumbnail image' /></li>
+   %endfor
+</ul>
+<img id = 'main_img' src='${ product.image_url(product.id) }'class='float-left' alt='image of the product'/>
+<p class='float-left'>${ product.Description}</p>
+<button class='btn btn-danger pull-right'>Buy</button>
+%if product.__class__.__name__ == 'BulkProduct':
+   <input class='pull-right text-center' value='1'/>
+   <label class='pull-right'  >Quantity</label>
+%endif
 </%block>

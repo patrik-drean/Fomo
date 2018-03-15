@@ -4,9 +4,13 @@ from datetime import datetime, timezone
 from catalog import models as cmod
 
 @view_function
-def process_request(request):
+def process_request(request, product:cmod.Product):
 
-    context = { 
-                }
+    product = cmod.Product.objects.get(id = product.id)
+    context = {
+        'product': product
+        }
 
     return request.dmp.render('detail.html', context)
+
+# Put current view product into request.last_five

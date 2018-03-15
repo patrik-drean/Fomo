@@ -59,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # APP.PYFILE.CLASS
+    'catalog.history.LastFiveMiddleware'
 ]
 
 ROOT_URLCONF = 'fomo.urls'

@@ -1,0 +1,35 @@
+p {
+   color: #4d5a6d;
+   text-align: justify;
+}
+#main_img {
+   float: left;
+   border: 1px solid  #a8aeb7;
+   border-radius: 8px;
+   width: 300px;
+   height: 300px;
+   margin: 0 2em 0 0;
+}
+#thumbnail_div {
+   float: left;
+}
+.thumbnail_img {
+   display: flex;
+   float: none;
+   border: 1px solid  #a8aeb7;
+   border-radius: 8px;
+   width: 60px;
+   height: 60px;
+   margin: .5em 1em 0 0;
+
+}
+li {
+      list-style: none;
+}
+label {
+   margin: 0 .5em;
+}
+input {
+   width: 50px;
+   margin: 0 1em 0 0
+}

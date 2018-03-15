@@ -6,7 +6,7 @@
   color: #B4B94E;
   font-weight: 800;
 }
-a:hover {
+#catalog_list a:hover {
    text-decoration: none;
    font-weight: 900;
    color: black;
