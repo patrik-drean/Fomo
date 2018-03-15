@@ -15,4 +15,7 @@
    <input class='pull-right text-center' value='1'/>
    <label class='pull-right'  >Quantity</label>
 %endif
+%for p in request.last_five:
+${ p }
+%endfor
 </%block>

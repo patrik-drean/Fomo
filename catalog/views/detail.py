@@ -6,7 +6,15 @@ from catalog import models as cmod
 @view_function
 def process_request(request, product:cmod.Product):
 
+    # request.session['productid'] = product.id
     product = cmod.Product.objects.get(id = product.id)
+
+    if product not in request.last_five:
+        request.last_five.append(product)
+
+    if len(request.last_five) > 5:
+        request.last_five.pop(0)
+
     context = {
         'product': product
         }

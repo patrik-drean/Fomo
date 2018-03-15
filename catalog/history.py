@@ -1,16 +1,43 @@
+from catalog import models as cmod
+
 class LastFiveMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
+        self.last_five = []
         # One-time configuration and initialization.
 
     def __call__(self, request):
-        # Code to be executed for each request before
-        # the view (and later middleware) are called.
+
+        productids = request.session.get('productids')
+        products = []
+
+        if productids is not None:
+            for pid in productids:
+                products.append(cmod.Product.objects.get(id = pid))
+
+        self.last_five = products
+
+        request.last_five = self.last_five
+
+
+
+
+
 
         response = self.get_response(request)
 
-        # Code to be executed for each request/response after
-        # the view is called.
+
+
+
+
+
+        productids = []
+        for p in products:
+            productids.append(int(p.id))
+
+        request.session['productids'] = productids
+        self.last_five = productids
+
 
         return response
 
