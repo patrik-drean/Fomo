@@ -2,7 +2,7 @@
 
 
 <%block name='middle_content'>
-<h1 class='text-center'>${ product.Name }</h1>
+<h1 class='text-center'>${product.Name | h}</h1>
 <ul id='thumbnail_div'>
    %for p in product.image_urls(product.id):
       <li><img class='thumbnail_img' src='${p}' alt='thumbnail image' /></li>
