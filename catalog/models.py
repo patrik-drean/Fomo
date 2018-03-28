@@ -6,6 +6,8 @@ from decimal import Decimal
 from datetime import datetime
 import stripe
 
+#######################################################################
+###   Products
 
 class Category(models.Model):
     Name = models.TextField()
@@ -90,12 +92,6 @@ class ProductImage(models.Model):
 
 
 #######################################################################
-###   Products
-
-# various product models go here
-
-
-#######################################################################
 ###   Orders
 
 class Order(models.Model):
@@ -170,6 +166,7 @@ class Order(models.Model):
     def finalize(self, stripe_charge_token):
         '''Runs the payment and finalizes the sale'''
         with transaction.atomic():
+            pass
             # recalculate just to be sure everything is updated
 
             # check that all products are available

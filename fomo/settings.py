@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # APP.PYFILE.CLASS
-    'catalog.history.LastFiveMiddleware'
+    'catalog.history.LastFiveMiddleware',
     'account.basicauth.BasicAuthMiddleware'
 ]
 
