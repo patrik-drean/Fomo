@@ -125,20 +125,28 @@ class Order(models.Model):
         # create a query object (filter to status='active')
         if include_tax_item:
             items = OrderItem.objects.filter(status='active', order_id = self.id )
-        else:
-            items = OrderItem.objects.filter(status='active', order_id = self.id  )
 
         # if we aren't including the tax item, alter the
         # query to exclude that OrderItem
         # I simply used the product name (not a great choice,
         # but it is acceptable for credit)
+        else:
+            items = OrderItem.objects.filter(status='active',order_id = self.id).exclude(
+                product_id = 75)
+
+        return items
+
+
 
 
     def get_item(self, product, create=False):
         '''Returns the OrderItem object for the given product'''
         item = OrderItem.objects.filter(order=self, product=product).first()
         if item is None and create:
-            item = OrderItem.objects.create(order=self, product=product, price=product.price, quantity=0)
+            item = OrderItem.objects.create(order=self,
+                product=product,
+                price=product.Price,
+                quantity=0)
         elif create and item.status != 'active':
             item.status = 'active'
             item.quantity = 0
@@ -201,7 +209,7 @@ class OrderItem(PolymorphicModel):
 
     def __str__(self):
         '''Prints for debugging purposes'''
-        return 'OrderItem {}: {}: {}'.format(self.id, self.product.name, self.extended)
+        return 'OrderItem {}: {}: {}'.format(self.id, self.product.Name, self.extended)
 
 
     def recalculate(self):

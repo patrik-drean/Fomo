@@ -15,7 +15,7 @@
 <%fl:render>
   %if product.__class__.__name__ == 'BulkProduct':
 <input id = 'id_quantity' name = 'quantity' class='pull-right text-center' value='1'/>
-<label class='pull-right'  >Quantity</label>
+<label class='pull-right' id="id_quantity" required >Quantity</label>
   %endif
 
 <br /><br />
