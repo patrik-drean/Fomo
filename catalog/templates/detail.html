@@ -1,5 +1,5 @@
 <%inherit file='app_base.htm' />
-
+<%namespace name="fl" module="formlib.tags"/>
 
 <%block name='middle_content'>
 <h1 class='text-center'>${product.Name | h}</h1>
@@ -10,10 +10,19 @@
 </ul>
 <img id = 'main_img' src='${ product.image_url(product.id) }'class='float-left' alt='image of the product'/>
 <p class='float-left'>${ product.Description}</p>
-<button class='btn btn-danger pull-right'>Buy</button>
-%if product.__class__.__name__ == 'BulkProduct':
-   <input class='pull-right text-center' value='1'/>
-   <label class='pull-right'  >Quantity</label>
-%endif
+<div>
+  <!--<button class='btn btn-danger pull-right'>Buy</button>-->
+<%fl:render>
+  %if product.__class__.__name__ == 'BulkProduct':
+<input id = 'id_quantity' name = 'quantity' class='pull-right text-center' value='1'/>
+<label class='pull-right'  >Quantity</label>
+  %endif
 
+<br /><br />
+</%fl:render>
+
+
+
+
+</div>
 </%block>

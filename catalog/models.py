@@ -123,6 +123,10 @@ class Order(models.Model):
     def active_items(self, include_tax_item=True):
         '''Returns the active items on this order'''
         # create a query object (filter to status='active')
+        if include_tax_item:
+            items = OrderItem.objects.filter(status='active', order_id = self.id )
+        else:
+            items = OrderItem.objects.filter(status='active', order_id = self.id  )
 
         # if we aren't including the tax item, alter the
         # query to exclude that OrderItem
