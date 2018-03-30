@@ -190,6 +190,11 @@ class Order(models.Model):
             self.get_item(product = tax_product, create=True)
 
         tax_line_item = self.get_item(tax_product)
+
+        #activate tax if inactive
+        tax_product.Status = 'A'
+        tax_product.save()
+
         tax_line_item.price = Decimal(self.total_price) * Decimal(.07)
         tax_line_item.recalculate()
         tax_line_item.save()
@@ -208,6 +213,9 @@ class Order(models.Model):
 
             for line_item in self.active_items():
                 if line_item.product.Status != 'A':
+                    print('**************************')
+                    print(line_item.product.Status )
+                    print(line_item.product.Name )
                     raise ActiveException('Product unavailable')
 
             # contact stripe and run the payment (using the stripe_charge_token)
@@ -234,9 +242,15 @@ class Order(models.Model):
                 if line_item.product.TITLE == 'BulkProduct':
                     line_item.product.Quantity -= line_item.quantity
 
+            # #
+            #     elif:
+            #         line_item.product.id = 75
+
             # update status for IndividualProducts
                 else:
                     line_item.product.Status = 'I'
+
+                line_item.product.save()
 
 
 
