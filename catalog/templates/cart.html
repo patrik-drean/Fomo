@@ -17,7 +17,11 @@
     <tr>
       <td>${ line.product.Name }</td>
       <td>$${ line.price }</td>
-      <td>${ line.quantity }</td>
+      <td>
+        %if line.product.id !=75:
+        ${ line.quantity }
+        %endif
+      </td>
       <td>$${ line.extended }</td>
       <td>
         %if line.product.id !=75:
@@ -35,14 +39,7 @@
 </table>
 <div>
   <!--<button class='btn btn-danger pull-right'>Buy</button>-->
-<%fl:render>
-  %if product.__class__.__name__ == 'BulkProduct':
-<input id = 'id_quantity' name = 'quantity' class='pull-right text-center' value='1'/>
-<label class='pull-right' id="id_quantity" required >Quantity</label>
-  %endif
-
-<br /><br />
-</%fl:render>
+<a class='btn btn-primary pull-right' href='/catalog/checkout/'>Checkout</a>
 
 
 </div>

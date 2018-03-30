@@ -80,10 +80,10 @@ class AddItemForm(Formless):
                     total_qty = int(qty) + line_item.quantity
                 else:
                     total_qty = int(qty)
+                    self.first_time = True
             else:
                 total_qty = int(qty)
                 self.first_time = True
-                print('hey')
             if total_qty > total_db_qty:
                 raise forms.ValidationError('Insufficient quantity')
 

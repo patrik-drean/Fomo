@@ -17,48 +17,10 @@ def process_request(request):
     # if cart.num_items() > 0:
 
 
-    # Create form
-    form = CheckoutForm(request)
 
-    if form.is_valid():
-        form.commit()
-        # All data is clean at this point. Don't change the info.
-
-        return HttpResponseRedirect('/catalog/checkout/')
-
-    form.submit_text = ''
     context = {
-        'form': form,
         'line_items': line_items,
         'total_price': total_price,
         }
 
     return request.dmp.render('cart.html', context)
-
-
-
-
-class CheckoutForm(Formless):
-
-
-    def init(self):
-        '''Adds the fields for this form (called at end of __init__)'''
-        # print('>' * 80)
-        # self.fields['quantity'] = forms.CharField(label="Quantity",
-        #     widget=forms.HiddenInput(),
-        #     initial= None,
-        #     required= False)
-
-        pass
-
-
-    def commit(self):
-        # cart = self.request.user.get_shopping_cart()
-        # product_in_cart = cart.get_item(product = self.product, create=True)
-        # print(product_in_cart)
-        # product_in_cart.quantity += int(self.cleaned_data.get('quantity'))
-        # product_in_cart.save()
-        #
-        # # print(cart)
-        # print(product_in_cart.quantity)
-        pass

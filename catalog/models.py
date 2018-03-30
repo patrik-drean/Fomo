@@ -191,8 +191,7 @@ class Order(models.Model):
 
         tax_line_item = self.get_item(tax_product)
         tax_line_item.price = Decimal(self.total_price) * Decimal(.07)
-        print(Decimal(self.total_price) * Decimal(.07))
-        print(tax_line_item.price)
+        tax_line_item.recalculate()
         tax_line_item.save()
 
         # update the total and save
