@@ -55,7 +55,7 @@ class CheckoutForm(Formless):
             cart.finalize(token, int(round(cart.total_price, 2) * 100))
         except Exception as e:
             traceback.print_exc()
-            raise forms.ValidationError('payment failed: {}'.format(e))
+            raise forms.ValidationError('Payment failed: {}'.format(e))
 
 
     def commit(self):
