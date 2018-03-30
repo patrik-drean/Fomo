@@ -198,7 +198,7 @@ class Order(models.Model):
         self.total_price += tax_line_item.price
         self.save()
 
-    def finalize(self, stripe_charge_token):
+    def finalize(self, stripe_charge_token, total_price):
         '''Runs the payment and finalizes the sale'''
         with transaction.atomic():
             # recalculate just to be sure everything is updated
@@ -207,23 +207,39 @@ class Order(models.Model):
             # check that all products are available
 
             for line_item in self.active_items():
-                if line_item.product.Status != 'active':
+                if line_item.product.Status != 'A':
                     raise ActiveException('Product unavailable')
 
             # contact stripe and run the payment (using the stripe_charge_token)
 
             charge  = stripe.Charge.create(
-                currency    = "usd",
-                source      = stripe_charge_token,
+                currency = "usd",
+                source = stripe_charge_token,
+                amount = total_price,
                 )
 
             # finalize (or create) one or more payment objects
-
+            payment = Payment()
+            payment.order = self
+            payment.amount = total_price
+            payment.validation_code = stripe_charge_token
+            payment.save()
 
             # set order status to sold and save the order
+            self.status = 'sold'
+            self.save()
 
             # update product quantities for BulkProducts
+            for line_item in self.active_items():
+                if line_item.product.TITLE == 'BulkProduct':
+                    line_item.product.Quantity -= line_item.quantity
+
             # update status for IndividualProducts
+                else:
+                    line_item.product.Status = 'I'
+
+
+
 
 class OrderItem(PolymorphicModel):
     '''A line item on an order'''
@@ -265,7 +281,7 @@ class OrderItem(PolymorphicModel):
 class Payment(models.Model):
     '''A payment on a sale'''
     order = models.ForeignKey(Order, null=True, on_delete=models.CASCADE)
-    payment_date = models.DateTimeField(null=True, blank=True)
+    payment_date = models.DateTimeField(null=True, blank=True, auto_now_add=True)
     amount = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=2) # max number is 999,999.99
     validation_code = models.TextField(null=True, blank=True)
 

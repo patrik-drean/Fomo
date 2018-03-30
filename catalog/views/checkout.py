@@ -5,13 +5,14 @@ from catalog import models as cmod
 from formlib import Formless
 from django import forms
 from django.http import HttpResponseRedirect
+import traceback
 
 @view_function
 def process_request(request):
 
     cart = request.user.get_shopping_cart()
     cart.recalculate()
-    total_price = round(cart.total_price,2)
+    total_price = round(cart.total_price, 2)
 
 
 
@@ -47,9 +48,11 @@ class CheckoutForm(Formless):
 
 
     def clean(self):
+        cart = self.request.user.get_shopping_cart()
         try:
             token = self.cleaned_data.get('stripeToken')
-            cart.finalize(token)
+            print(token)
+            cart.finalize(token, int(round(cart.total_price, 2) * 100))
         except Exception as e:
             traceback.print_exc()
             raise forms.ValidationError('payment failed: {}'.format(e))
