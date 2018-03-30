@@ -63,7 +63,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <%block name="navbar_links"></%block>
-
+            <% print(request.user.orders) %>
           % if request.user.orders is not None :
             <a href='/catalog/cart/' id='cart_icon'>${ request.user.get_shopping_cart().num_items()}</a>
           % endif

@@ -200,21 +200,37 @@ class Order(models.Model):
 
     def finalize(self, stripe_charge_token):
         '''Runs the payment and finalizes the sale'''
-        with transaction.atomic():
-            pass
-            # recalculate just to be sure everything is updated
+        try:
+            with transaction.atomic():
+                # recalculate just to be sure everything is updated
+                self.recalculate()
 
-            # check that all products are available
+                # check that all products are available
 
-            # contact stripe and run the payment (using the stripe_charge_token)
+                for line_item in self.active_items():
+                    if line_item.product.Status != 'active':
+                        raise ActiveException()
 
-            # finalize (or create) one or more payment objects
+                # contact stripe and run the payment (using the stripe_charge_token)
+            try:
+                charge  = stripe.Charge.create(
+                    currency    = "usd",
+                    source      = stripe_charge_token,
+                )
 
-            # set order status to sold and save the order
+                new_car.charge_id   = charge.id
 
-            # update product quantities for BulkProducts
-            # update status for IndividualProducts
+            except stripe.error.CardError as ce:
+                return False, ce
 
+                # finalize (or create) one or more payment objects
+
+                # set order status to sold and save the order
+
+                # update product quantities for BulkProducts
+                # update status for IndividualProducts
+        except ActiveException:
+            print(ActiveException)
 
 class OrderItem(PolymorphicModel):
     '''A line item on an order'''

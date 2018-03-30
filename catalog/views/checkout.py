@@ -43,8 +43,9 @@ class CheckoutForm(Formless):
         self.fields['state'] = forms.CharField(label = 'State')
         self.fields['country'] = forms.CharField(label = 'Country')
         self.fields['zip'] = forms.CharField(label = 'Zip Code')
+        self.fields['stripeToken'] = forms.CharField(widget = forms.HiddenInput())
 
-        pass
+
 
 
     def commit(self):
