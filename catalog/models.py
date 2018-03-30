@@ -200,37 +200,31 @@ class Order(models.Model):
 
     def finalize(self, stripe_charge_token):
         '''Runs the payment and finalizes the sale'''
+        with transaction.atomic():
+            # recalculate just to be sure everything is updated
+            self.recalculate()
+
+            # check that all products are available
+
+            for line_item in self.active_items():
+                if line_item.product.Status != 'active':
+                    raise ActiveException('Product unavailable')
+
+            # contact stripe and run the payment (using the stripe_charge_token)
         try:
-            with transaction.atomic():
-                # recalculate just to be sure everything is updated
-                self.recalculate()
+            charge  = stripe.Charge.create(
+                currency    = "usd",
+                source      = stripe_charge_token,
+            )
 
-                # check that all products are available
+            # finalize (or create) one or more payment objects
+            
 
-                for line_item in self.active_items():
-                    if line_item.product.Status != 'active':
-                        raise ActiveException()
+            # set order status to sold and save the order
 
-                # contact stripe and run the payment (using the stripe_charge_token)
-            try:
-                charge  = stripe.Charge.create(
-                    currency    = "usd",
-                    source      = stripe_charge_token,
-                )
+            # update product quantities for BulkProducts
+            # update status for IndividualProducts
 
-                new_car.charge_id   = charge.id
-
-            except stripe.error.CardError as ce:
-                return False, ce
-
-                # finalize (or create) one or more payment objects
-
-                # set order status to sold and save the order
-
-                # update product quantities for BulkProducts
-                # update status for IndividualProducts
-        except ActiveException:
-            print(ActiveException)
 
 class OrderItem(PolymorphicModel):
     '''A line item on an order'''
@@ -275,3 +269,6 @@ class Payment(models.Model):
     payment_date = models.DateTimeField(null=True, blank=True)
     amount = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=2) # max number is 999,999.99
     validation_code = models.TextField(null=True, blank=True)
+
+class ActiveException(Exception):
+    pass
