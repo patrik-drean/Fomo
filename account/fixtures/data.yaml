@@ -29,7 +29,7 @@
 - model: account.user
   pk: 100
   fields:
-    password: pbkdf2_sha256$100000$KOFXqrcHEfcq$7JBNRo7PsNtenp1TTlHVhdDnTfHl8FNN6UthHLeTFME=
+    password: pbkdf2_sha256$100000$k0voTwmgWpd1$OzZqbgatVPeSmOrENi9VV/rHcn0rg04k8j1NR9Eno48=
     last_login: 2018-01-29 17:42:37.885221+00:00
     is_superuser: true
     email: patrikdrean@gmail.com
@@ -41,7 +41,7 @@
     address: null
     state: null
     zip: null
-    groups: []
+    groups: [3]
     user_permissions: []
 
 - model: account.user
@@ -59,7 +59,7 @@
     address: null
     state: null
     zip: null
-    groups: []
+    groups: [3]
     user_permissions: []
 
 - model: admin.logentry

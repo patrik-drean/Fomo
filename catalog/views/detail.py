@@ -5,6 +5,7 @@ from catalog import models as cmod
 from formlib import Formless
 from django import forms
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import permission_required
 
 @view_function
 def process_request(request, product:cmod.Product):

@@ -211,20 +211,19 @@ class Order(models.Model):
                     raise ActiveException('Product unavailable')
 
             # contact stripe and run the payment (using the stripe_charge_token)
-        try:
+
             charge  = stripe.Charge.create(
                 currency    = "usd",
                 source      = stripe_charge_token,
-            )
+                )
 
             # finalize (or create) one or more payment objects
-            
+
 
             # set order status to sold and save the order
 
             # update product quantities for BulkProducts
             # update status for IndividualProducts
-
 
 class OrderItem(PolymorphicModel):
     '''A line item on an order'''
