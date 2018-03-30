@@ -46,6 +46,13 @@ class CheckoutForm(Formless):
         self.fields['stripeToken'] = forms.CharField(widget = forms.HiddenInput())
 
 
+    def clean(self):
+        try:
+            token = self.cleaned_data.get('stripeToken')
+            cart.finalize(token)
+        except Exception as e:
+            traceback.print_exc()
+            raise forms.ValidationError('payment failed: {}'.format(e))
 
 
     def commit(self):
