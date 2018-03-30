@@ -44,6 +44,7 @@ class AddItemForm(Formless):
     def __init__(self, *args, **kwargs):
         self.product_id = kwargs.pop('product_id')
         self.product = cmod.Product.objects.get(id = self.product_id)
+        self.first_time = False
 
         super(AddItemForm, self).__init__(*args, **kwargs)
         '''This is defaulted, but now i can edit by using the above 2 lines'''
@@ -64,6 +65,7 @@ class AddItemForm(Formless):
 
 
         if qty != '':
+            #make sure they've entered a number
             if int(qty) < 1:
                 raise forms.ValidationError('Enter at least 1 for quantity')
 
@@ -71,28 +73,41 @@ class AddItemForm(Formless):
             line_item = cmod.OrderItem.objects.filter(
                 order=self.request.user.get_shopping_cart(),
                 product=self.product).first()
+
+            # see if product is already in cart
             if line_item is not None:
-                total_qty = int(qty) + line_item.quantity
+                if line_item.status != 'deleted':
+                    total_qty = int(qty) + line_item.quantity
+                else:
+                    total_qty = int(qty)
             else:
                 total_qty = int(qty)
+                self.first_time = True
+                print('hey')
             if total_qty > total_db_qty:
                 raise forms.ValidationError('Insufficient quantity')
 
 
 
-        print('>' * 80)
-        print(qty)
-        print(self.request.user.get_shopping_cart())
-        print(self.product)
-        print(line_item)
-        print(total_db_qty)
-
         return qty
 
-
-
     def commit(self):
+        # Grab the user's order
         cart = self.request.user.get_shopping_cart()
-        cart.get_item(product = self.product, create=True)
-        print(cart)
-        print(cart.get_item(product=self.product))
+        qty = self.cleaned_data.get('quantity')
+        if qty == '':
+            qty = 0
+        else:
+            qty = int(qty)
+            if self.first_time:
+                qty = qty - 1
+        print(qty)
+
+        # Grab the current product selected and create it the cart
+        product_in_cart = cart.get_item(product = self.product, create=True)
+
+        # Add the quantity to what the line item already has in the cart
+        product_in_cart.quantity += qty
+
+        # Save updated line item
+        product_in_cart.save()

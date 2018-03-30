@@ -1,0 +1,49 @@
+<%inherit file='app_base.htm' />
+<%namespace name="fl" module="formlib.tags"/>
+
+<%block name='middle_content'>
+<h1 class='text-center'>Cart</h1>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Extended</th>
+    </tr>
+  </thead>
+  <tbody>
+    %for line in line_items:
+    <tr>
+      <td>${ line.product.Name }</td>
+      <td>$${ line.price }</td>
+      <td>${ line.quantity }</td>
+      <td>$${ line.extended }</td>
+      <td>
+        %if line.product.id !=75:
+        <a class='remove_link' href="/catalog/deactivate/${ line.id }/">Remove</a>
+        %endif
+      </td>
+    </tr>
+    %endfor
+      <td><b>Total</b></td>
+      <td></td>
+      <td></td>
+      <td><b>$${ total_price }</b></td>
+      <td></td>
+  </tbody>
+</table>
+<div>
+  <!--<button class='btn btn-danger pull-right'>Buy</button>-->
+<%fl:render>
+  %if product.__class__.__name__ == 'BulkProduct':
+<input id = 'id_quantity' name = 'quantity' class='pull-right text-center' value='1'/>
+<label class='pull-right' id="id_quantity" required >Quantity</label>
+  %endif
+
+<br /><br />
+</%fl:render>
+
+
+</div>
+</%block>

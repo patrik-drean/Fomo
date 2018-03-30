@@ -1,0 +1,7 @@
+.btn[type='submit']
+{
+  display: none;
+}
+.remove_link {
+  color: #AA3333;
+}

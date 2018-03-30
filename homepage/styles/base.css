@@ -59,3 +59,20 @@ footer p {
   color: black;
   width: 100px;
 }
+#cart_icon {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  color: black;
+  text-align: center;
+  right: 200px;
+  border-radius: 5px;
+  top: 10px;
+  font-size: 25px;
+
+}
+#cart_icon:hover {
+  text-decoration: none;
+  border: solid #B4B94E 2px;
+}
