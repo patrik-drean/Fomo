@@ -5,13 +5,10 @@ from catalog import models as cmod
 from formlib import Formless
 from django import forms
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import permission_required
 
-@permission_required('add_logentry',  login_url='/account/login/')
 @view_function
 def process_request(request):
 
-    print('*' * 80)
     cart = request.user.get_shopping_cart()
     cart.recalculate()
     line_items = cart.active_items()

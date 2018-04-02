@@ -8,8 +8,7 @@ from django.http import HttpResponseRedirect
 
 @view_function
 def process_request(request, productid):
-    print('*' * 80)
-    print(productid)
+
     # request.session['productid'] = product.id
     product = cmod.Product.objects.get(id = productid)
 
