@@ -9,14 +9,20 @@ import traceback
 import json
 from rest_framework import viewsets
 from catalog.views.serializers import ProductSerializer, CategorySerializer
+from catalog.views import views
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework.decorators import api_view
 
 
+@api_view(['GET', 'POST', ])
+def process_request(request, categoryid = -1, productid = -1, max_price = 999999, page = 1):
+    print('*' * 80)
+    products = cmod.Product.objects.all().order_by("Category","Name")
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
-@view_function
-def process_request(request, category, product, max_price, page = 1):
-
-
-    return
 #
 #     result = cmod.Product.objects.all()
 #     serializer_class = ProductSerializer
