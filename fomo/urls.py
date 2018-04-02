@@ -16,12 +16,41 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from rest_framework import routers
+from catalog.views import search
+from catalog.views import views
+
+# router = routers.DefaultRouter()
+# router.register(r'products', views.ProductViewSet)
+# router.register(r'categories', views.CategoryViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+
 urlpatterns = [
     # the built-in Django administrator
     url(r'^admin/', admin.site.urls),
 
     # urls for any third-party apps go here
+    # url(r'^', include(router.urls)),
+    # url(r'^api-auth/', include('rest_framework.urls'), namespace='rest_framework')),
+    url(r'^catalog/search$', views.ProductViewSet.as_view({'get': 'list'}), name='search'),
 
     # the DMP router - if DEFAULT_HOMEPAGE is set, this should be the last pattern (the wildcards match everything)
     url('', include('django_mako_plus.urls')),
 ]
+
+# from django.conf.urls import url, include
+# from rest_framework import routers
+# from tutorial.quickstart import views
+#
+# router = routers.DefaultRouter()
+# router.register(r'users', views.UserViewSet)
+# router.register(r'groups', views.GroupViewSet)
+#
+# # Wire up our API using automatic URL routing.
+# # Additionally, we include login URLs for the browsable API.
+# urlpatterns = [
+#     url(r'^', include(router.urls)),
+#     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+# ]

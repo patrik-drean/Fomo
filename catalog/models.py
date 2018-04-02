@@ -68,6 +68,10 @@ class Product(PolymorphicModel):
             urls.append('/static/catalog/media/products/image_unavailable.gif')
         return urls
 
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+            sort_keys=True, indent=4)
+
 class BulkProduct(Product):
     TITLE = 'BulkProduct'
     Quantity = models.IntegerField()
@@ -213,9 +217,9 @@ class Order(models.Model):
 
             for line_item in self.active_items():
                 if line_item.product.Status != 'A':
-                    print('**************************')
-                    print(line_item.product.Status )
-                    print(line_item.product.Name )
+                    # print('**************************')
+                    # print(line_item.product.Status )
+                    # print(line_item.product.Name )
                     raise ActiveException('Product unavailable')
 
             # contact stripe and run the payment (using the stripe_charge_token)
@@ -242,11 +246,6 @@ class Order(models.Model):
                 if line_item.product.TITLE == 'BulkProduct':
                     line_item.product.Quantity -= line_item.quantity
 
-            # #
-            #     elif:
-            #         line_item.product.id = 75
-
-            # update status for IndividualProducts
                 else:
                     line_item.product.Status = 'I'
 
