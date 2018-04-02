@@ -2,6 +2,9 @@ from django.conf import settings
 from django_mako_plus import view_function, jscontext
 from datetime import datetime, timezone
 from catalog import models as cmod
+from django.contrib.auth.decorators import permission_required
+
+@permission_required('add_logentry',  login_url='/account/login/')
 
 @view_function
 def process_request(request, categoryid = 0):
