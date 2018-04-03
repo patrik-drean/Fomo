@@ -18,20 +18,42 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST', ])
 def process_request(request, category_name = '', product_name = '', max_price = 999999, page = 1):
-# def process_request(request, category_name, product_name, max_price = 999999, page = 1):
-    print('*' * 80)
-    print(category_name)
-    products = cmod.Product.objects.all().order_by("Category","Name")
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
 
-#
-#     result = cmod.Product.objects.all()
-#     serializer_class = ProductSerializer
-#
-#     # json_list = []
-#     #
-#     # for product in result:
-#     #     json_list.append(product.toJSON)
-#
-#     return result
+    # Filter by category
+    if category_name != 'na':
+        products = cmod.Product.objects.filter(Category__Name__icontains = category_name)
+    else:
+        products = cmod.Product.objects.all()
+
+    # Filter by product
+    if product_name != 'na':
+        products = products.filter(Name__icontains = product_name)
+    else:
+        pass
+
+    # Filter by price
+    products = products.filter(Price__lte = max_price)
+
+    # Order by category and product name
+    products = products.order_by("Category__Name","Name")
+
+    # Filter by page
+    totalPageCount = int(len(products) / 6) + 1
+
+    sixProducts = []
+
+    if page == totalPageCount:
+        maxProductPosition = len(products)
+        productPosition = (page - 1) * 6
+    else:
+        maxProductPosition = page * 6
+        productPosition = (page - 1) * 6
+
+    while(productPosition < maxProductPosition):
+        if products[productPosition] is not None:
+            sixProducts.append(products[productPosition])
+        productPosition += 1
+
+    # Output
+    serializer = ProductSerializer(sixProducts, many=True)
+    return Response(serializer.data)

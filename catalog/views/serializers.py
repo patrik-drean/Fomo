@@ -5,9 +5,14 @@ from catalog import models as cmod
 from rest_framework import serializers
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    Category = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='Name'
+     )
+
     class Meta:
         model = cmod.Product
-        fields = ( 'id', 'Name', 'Price', 'Description')
+        fields = ( 'id',  'Category','Name', 'Price', 'Description')
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
