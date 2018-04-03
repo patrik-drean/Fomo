@@ -32,3 +32,29 @@ function changeFunction(pageIncrement = 1) {
       // <p class="">Page ${ int(pageid) + 1 } of ${ productCount }</p>
       // <a href="/catalog/index.products/${ category.id }/${ int(pageid) + 1  }"><i class="fas fa-angle-double-right"></i></a>
 }
+function search() {
+  var category_name = $('#category_name').val()
+  var product_name = $('#product_name').val()
+  var price = $('#price').val()
+  var page = $('#page').val()
+
+  if(category_name == '') {
+    category_name = 'na'
+  }
+  if(product_name == '') {
+    product_name = 'na'
+  }
+  if(price == '') {
+    price = 999999
+  }
+  if(page == '') {
+    page = 1
+  }
+
+  // Redirect to search.py
+  window.location.href = "http://localhost:8000/catalog/search/"+ category_name +
+    "/"+ product_name +
+    "/" + price +
+    "/" + page + '/?format=json';
+
+}

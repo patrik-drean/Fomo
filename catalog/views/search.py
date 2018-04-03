@@ -17,8 +17,10 @@ from rest_framework.decorators import api_view
 
 
 @api_view(['GET', 'POST', ])
-def process_request(request, categoryid = -1, productid = -1, max_price = 999999, page = 1):
+def process_request(request, category_name = '', product_name = '', max_price = 999999, page = 1):
+# def process_request(request, category_name, product_name, max_price = 999999, page = 1):
     print('*' * 80)
+    print(category_name)
     products = cmod.Product.objects.all().order_by("Category","Name")
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)

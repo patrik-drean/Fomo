@@ -47,7 +47,10 @@
   right: .3em;
   margin: 0; }
 
-h3 {
+#search_div {
   margin: 0 0 0 1em; }
+
+.btn {
+  margin: 8px 0 0 0; }
 
 /*# sourceMappingURL=index.css.map */

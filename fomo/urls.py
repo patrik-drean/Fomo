@@ -19,6 +19,7 @@ from django.contrib import admin
 from rest_framework import routers
 from catalog.views import search
 from catalog import views
+from django.urls import path
 
 # router = routers.DefaultRouter()
 # router.register(r'products', views.ProductViewSet)
@@ -35,6 +36,9 @@ urlpatterns = [
     # url(r'^', include(router.urls)),
     # url(r'^api-auth/', include('rest_framework.urls'), namespace='rest_framework')),
     url(r'^catalog/search$', views.search.process_request, name='search'),
+    # url(r'^catalog/search/(?P<id>\w{0,50})/$', views.search.process_request, name='search'),
+    # path(r'^catalog/search/(?P<id>\w{0,50})/$', views.search.process_request, name='search'),
+    path('catalog/search/<str:category_name>/<str:product_name>/<int:max_price>/<int:page>/', views.search.process_request,),
 
     # the DMP router - if DEFAULT_HOMEPAGE is set, this should be the last pattern (the wildcards match everything)
     url('', include('django_mako_plus.urls')),
