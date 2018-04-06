@@ -3,7 +3,7 @@ from django.conf import settings
 from django.forms.models import model_to_dict
 from polymorphic.models import PolymorphicModel
 from decimal import Decimal
-from datetime import datetime
+import datetime
 import stripe
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -255,10 +255,62 @@ class Order(models.Model):
                 line_item.product.save()
 
             # send email receipt to customer
-            fromaddr = "pdrean@musical-family.me"
+            fromaddr = "donotreply@musical-family.me"
             toaddr = self.user.email
-            subject = 'Thank you for your purchase'#'FOMO Receipt'
-            message = 'Hope you have a great day! '
+            subject = 'Thank You for your Purchase!'#'FOMO Receipt'
+            product_table = ''
+            for line in self.active_items():
+                product_table += """
+                    <tr>
+                      <td>""" + line.product.Name  +"""</td>
+                      <td>""" + str(line.price) + """</td>
+                      <td>
+                """
+
+                if line.product.id !=75:
+                    product_table +=  str(line.quantity)
+
+                product_table += """
+                      </td>
+                      <td>""" + str(line.extended) + """</td>
+                    </tr>
+                """
+
+            message = """
+                <h1> Order Confirmation: </h1>
+                <p>Date: """ + datetime.date.today().strftime('%b %d, %Y') + """</p>
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Extended</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                """ + product_table + """
+                      <td></td>
+                      <td></td>
+                      <td><b>Total</b></td>
+                      <td><b>Order Total: $""" + str(total_price/100) + """</b></td>
+                  </tbody>
+                </table>
+                <style>
+                    h1 {
+                        
+                    }
+                    p, th, td {
+                        font-size: 20px;
+                    }
+                </style>
+            """
+
+            # 2.	When the finalize() method is called (upon finalization of a sale),
+            # email a receipt to the user.  This can be the same (or nearly the same)
+            # template you use for the browser-based receipt page.
+            # It should show the sale information, including the date, total,
+            # sale items, tax, shipping, etc.
 
             msg = MIMEMultipart()
             msg['From'] = fromaddr
