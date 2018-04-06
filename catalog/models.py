@@ -5,6 +5,9 @@ from polymorphic.models import PolymorphicModel
 from decimal import Decimal
 from datetime import datetime
 import stripe
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 #######################################################################
 ###   Products
@@ -250,6 +253,27 @@ class Order(models.Model):
                     line_item.product.Status = 'I'
 
                 line_item.product.save()
+
+            # send email receipt to customer
+            fromaddr = "pdrean@musical-family.me"
+            toaddr = self.user.email
+            subject = 'Thank you for your purchase'#'FOMO Receipt'
+            message = 'Hope you have a great day! '
+
+            msg = MIMEMultipart()
+            msg['From'] = fromaddr
+            msg['To'] = toaddr
+            msg['Subject'] = subject
+
+            body = message
+            msg.attach(MIMEText(body, 'html'))
+
+            server = smtplib.SMTP('mail.musical-family.me', 25)
+            # server.starttls()
+            # server.login(fromaddr, "TestAcount")
+            text = msg.as_string()
+            server.sendmail(fromaddr, toaddr, text)
+            # server.quit()
 
 
 
