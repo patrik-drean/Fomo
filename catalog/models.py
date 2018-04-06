@@ -263,7 +263,7 @@ class Order(models.Model):
                 product_table += """
                     <tr>
                       <td>""" + line.product.Name  +"""</td>
-                      <td>""" + str(line.price) + """</td>
+                      <td>$""" + str(line.price) + """</td>
                       <td>
                 """
 
@@ -272,7 +272,7 @@ class Order(models.Model):
 
                 product_table += """
                       </td>
-                      <td>""" + str(line.extended) + """</td>
+                      <td>$""" + str(line.extended) + """</td>
                     </tr>
                 """
 
@@ -290,19 +290,27 @@ class Order(models.Model):
                   </thead>
                   <tbody>
                 """ + product_table + """
+                    <tr>
                       <td></td>
                       <td></td>
                       <td><b>Total</b></td>
-                      <td><b>Order Total: $""" + str(total_price/100) + """</b></td>
+                      <td><b>$""" + str(total_price/100) + """</b></td>
+                  </tr>
                   </tbody>
                 </table>
                 <style>
                     h1 {
-                        
+
                     }
                     p, th, td {
                         font-size: 20px;
                     }
+                    th, td {
+                        padding: 5px;
+                        border: 1px solid black;
+                        margin: 0;
+                    }
+
                 </style>
             """
 
