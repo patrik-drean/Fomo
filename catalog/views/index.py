@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from catalog import models as cmod
 from django.contrib.auth.decorators import permission_required
 
-@permission_required('add_logentry',  login_url='/account/login/')
+#@permission_required('add_logentry',  login_url='/account/login/')
 
 @view_function
 def process_request(request, categoryid = 0):

@@ -3,7 +3,7 @@
 <!-- Block for the navbar links -->
 <%block name="navbar_links">
 <ul class="nav navbar-nav">
-  <li ><a href=".." class = "${ 'active' if request.dmp.page == 'index' else ''}"}>Home</a></li>
+  <li ><a href="/homepage/" class = "${ 'active' if request.dmp.page == 'index' else ''}"}>Home</a></li>
   <li><a href="/about/" class = "${ 'active' if request.dmp.page == 'about' else ''}">About</a></li>
   <li><a href="/contact/" class = "${ 'active' if request.dmp.page == 'contact' else ''}">Contact</a></li>
   <li><a href="/faq/" class = "${ 'active' if request.dmp.page == 'faq' else ''}">FAQ</a></li>

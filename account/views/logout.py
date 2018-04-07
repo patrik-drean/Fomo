@@ -6,4 +6,4 @@ from django.http import HttpResponseRedirect
 def process_request(request):
         context = {}
         logout(request)
-        return HttpResponseRedirect('/homepage/index/')
+        return HttpResponseRedirect('/homepage/')
