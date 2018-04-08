@@ -27,7 +27,8 @@ SECRET_KEY = 'n1=uoya3al8jme-b47b!4i_h1l*o-&4z!p5s9kzj&y7=u(x+ho'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'musical-family.me', 'localhost']
+# ALLOWED_HOSTS = ['127.0.0.1', 'musical-family.me', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 #import stripe keys
 STRIPE_PUBLIC_KEY = "pk_test_UQVGkltJ3dR4eUT9LwJT2Fgk"
@@ -168,10 +169,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fomo',
-        'USER': 'patrikdrean',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '128.187.61.36',
+        'PORT': '1515',
     }
 }
 

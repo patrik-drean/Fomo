@@ -8,10 +8,15 @@ verify_ssl = true
 
 django = "*"
 dj-database-url = "*"
+django-polymorphic = "*"
+django-username-email = "*"
+djangorestframework = "*"
 psycopg2 = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-mako-plus = "*"
+requests = "*"
+stripe = "*"
 
 
 

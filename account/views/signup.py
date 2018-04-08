@@ -14,7 +14,7 @@ def process_request(request):
         form.commit()
         # All data is clean at this point. Don't change the info.
 
-        return HttpResponseRedirect('/account/index/')
+        return HttpResponseRedirect('/homepage/')
 
     context = {
         "form": form,
