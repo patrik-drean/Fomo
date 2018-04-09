@@ -11,15 +11,17 @@ p {
 }
 
 header {
-  background-color: #147871;
-  border-top: 4px solid #606060;
-  border-bottom: 4px solid #606060;
-  margin: 0;
+  background-color: #283654;
+  margin: 0 0 3px 0;
 }
 nav, .navbar, .navbar-primary {
   margin: 0;
   padding: 5px;
 }
+/* header:hover {
+background-color: inherit;
+background-position: 0 0;
+} */
 header h1 {
   color: #FFFFFF;
   margin: 0;
