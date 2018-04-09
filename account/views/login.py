@@ -6,7 +6,11 @@ from formlib import Formless
 from django.contrib.auth import authenticate, login
 import re
 from ldap3 import Server, Connection
+<<<<<<< HEAD
 from json import loads
+=======
+from simplejson import loads
+>>>>>>> 355c208a8f6be8542d4d307ce41c839bb8a3b46c
 
 
 @view_function
@@ -37,6 +41,7 @@ class LoginForm(Formless):
 
 
     def clean(self):
+<<<<<<< HEAD
         user_email = self.cleaned_data.get('email')
         user_password = self.cleaned_data.get('password')
 
@@ -44,6 +49,15 @@ class LoginForm(Formless):
 
         # user_email = 'bclark@musical-family.me'
         # user_password = 'Server!'
+=======
+        # user_email = self.cleaned_data.get('email')
+        # user_password = self.cleaned_data.get('password')
+
+        # Check if user is in Active Directory
+
+        user_email = 'bclark@musical-family.me'
+        user_password = 'Server!'
+>>>>>>> 355c208a8f6be8542d4d307ce41c839bb8a3b46c
 
         # ad_check = None
         server = Server('musical-family.me')
@@ -89,12 +103,21 @@ class LoginForm(Formless):
 
         # Authenticate if user is not in Active Directory
         else:
+<<<<<<< HEAD
         self.user = authenticate(
                                 email = user_email,
                                 password = user_password,
                                 )
         if self.user is None:
             raise forms.ValidationError('Invalid email or password')
+=======
+            self.user = authenticate(
+                                    email = user_email,
+                                    password = user_password,
+                                    )
+            if self.user is None:
+                raise forms.ValidationError('Invalid email or password')
+>>>>>>> 355c208a8f6be8542d4d307ce41c839bb8a3b46c
 
     def commit(self):
 
