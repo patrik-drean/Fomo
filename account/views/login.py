@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login
 import re
 from ldap3 import Server, Connection
 from simplejson import loads
+from account import models as amod
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 
 
 @view_function
@@ -68,15 +71,15 @@ class LoginForm(Formless):
                 # Create user in database if authentication failed
                 if self.user is None:
                     self.user = amod.User()
-                    user.email = user_email
-                    user.set_password(user_password)
+                    self.user.email = user_email
+                    self.user.set_password(user_password)
 
                     # Add permission
                     ct = ContentType.objects.get_for_model(amod.User)
                     permission1 = Permission.objects.get(codename ='can_create')
 
                     self.user.save()
-                    user.user_permissions.add(permission1)
+                    self.user.user_permissions.add(permission1)
                     self.user.save()
 
                     self.user = authenticate(
