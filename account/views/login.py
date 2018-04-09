@@ -11,7 +11,6 @@ from account import models as amod
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
-
 @view_function
 def process_request(request):
     form = LoginForm(request)
