@@ -6,6 +6,8 @@ from formlib import Formless
 import re
 from account import models as amod
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
 
 @view_function
 def process_request(request):
@@ -73,6 +75,12 @@ class SignupForm(Formless):
         user.state = self.cleaned_data.get("state")
         user.zip = self.cleaned_data.get("zip")
 
+        # Add permission
+        ct = ContentType.objects.get_for_model(amod.User)
+        permission1 = Permission.objects.get(codename ='can_create')
+
+        user.save()
+        user.user_permissions.add(permission1)
         user.save()
 
         user = authenticate(email = user.email, password = self.cleaned_data.get("password"))
