@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 import re
 from ldap3 import Server, Connection
 from simplejson import loads
-
+from account import models as amod
 
 @view_function
 def process_request(request):
