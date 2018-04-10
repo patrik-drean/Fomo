@@ -27,10 +27,13 @@ def process_request(request, productid):
     form = AddItemForm(request, product_id = product.id)
     form.submit_text = 'Add to Cart'
     if form.is_valid():
-        form.commit()
-        # All data is clean at this point. Don't change the info.
+        if request.user.is_authenticated:
+            form.commit()
+            # All data is clean at this point. Don't change the info.
 
-        return HttpResponseRedirect('/catalog/cart/')
+            return HttpResponseRedirect('/catalog/cart/')
+        else:
+            return HttpResponseRedirect('/account/login/')
 
     context = {
         'product': product,
@@ -62,32 +65,30 @@ class AddItemForm(Formless):
     def clean_quantity(self):
         qty = self.cleaned_data.get('quantity')
 
+        # Make sure user is logged in
+        if self.request.user.is_authenticated:
+            if qty != '':
+                # Make sure they've entered a number
+                if int(qty) < 1:
+                    raise forms.ValidationError('Enter at least 1 for quantity')
 
+                total_db_qty = cmod.Product.objects.get(id = self.product.id).Quantity
+                line_item = cmod.OrderItem.objects.filter(
+                    order=self.request.user.get_shopping_cart(),
+                    product=self.product).first()
 
-        if qty != '':
-            #make sure they've entered a number
-            if int(qty) < 1:
-                raise forms.ValidationError('Enter at least 1 for quantity')
-
-            total_db_qty = cmod.Product.objects.get(id = self.product.id).Quantity
-            line_item = cmod.OrderItem.objects.filter(
-                order=self.request.user.get_shopping_cart(),
-                product=self.product).first()
-
-            # see if product is already in cart
-            if line_item is not None:
-                if line_item.status != 'deleted':
-                    total_qty = int(qty) + line_item.quantity
+                # see if product is already in cart
+                if line_item is not None:
+                    if line_item.status != 'deleted':
+                        total_qty = int(qty) + line_item.quantity
+                    else:
+                        total_qty = int(qty)
+                        self.first_time = True
                 else:
                     total_qty = int(qty)
                     self.first_time = True
-            else:
-                total_qty = int(qty)
-                self.first_time = True
-            if total_qty > total_db_qty:
-                raise forms.ValidationError('Insufficient quantity')
-
-
+                if total_qty > total_db_qty:
+                    raise forms.ValidationError('Insufficient quantity')
 
         return qty
 

@@ -277,7 +277,7 @@ class Order(models.Model):
                 """
 
             message = """
-                <h1> Order Confirmation: </h1>
+                <h1> Order Confirmation </h1>
                 <p>Date: """ + datetime.date.today().strftime('%b %d, %Y') + """</p>
                 <table class="table table-striped table-bordered">
                   <thead>
@@ -298,17 +298,37 @@ class Order(models.Model):
                   </tr>
                   </tbody>
                 </table>
+                <br />
+                <p>
+                    Thank you for being a part of FOMO. For any issues or complaints,
+                    please contact bclark@musical-family.me.
+                </p>
+                <br />
+                <br />
+                <p id="legal_stuff">
+                This message is systematically generated.
+                Please do not attempt to reply or send e-mail to this account
+                as it is not a managed e-mail account.
+                For questions concerning your order please contact the store at
+                which your order was placed. For all other inquiries please
+                visit the Customer Service section on https://www.musical-family.me.
+                </p>
                 <style>
                     h1 {
 
                     }
-                    p, th, td {
-                        font-size: 20px;
+                    p {
+                        font-size: 18px;
                     }
                     th, td {
                         padding: 5px;
                         border: 1px solid black;
                         margin: 0;
+                        font-size: 16px;
+                    }
+                    #legal_stuff {
+                        color: grey;
+                        font-size:8px;
                     }
 
                 </style>
