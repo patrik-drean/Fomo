@@ -44,7 +44,7 @@ nav li a {
 }
 
 .active a {
-  color: #B4B94E;
+  color: #00ADEE;
   font-weight: 800;
 }
 .row div, .row
@@ -75,5 +75,5 @@ footer p {
 }
 #cart_icon:hover {
   text-decoration: none;
-  border: solid #B4B94E 2px;
+  border: solid #00ADEE 2px;
 }

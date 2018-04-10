@@ -3292,7 +3292,7 @@ fieldset[disabled] .btn-info.focus {
 }
 .btn-warning {
   color: #ffffff;
-  background-color: #b4b94e;
+  background-color: #00ADEE;
   border-color: #a5aa43;
 }
 .btn-warning:focus,
@@ -3340,11 +3340,11 @@ fieldset[disabled] .btn-warning:focus,
 .btn-warning.disabled.focus,
 .btn-warning[disabled].focus,
 fieldset[disabled] .btn-warning.focus {
-  background-color: #b4b94e;
+  background-color: #00ADEE;
   border-color: #a5aa43;
 }
 .btn-warning .badge {
-  color: #b4b94e;
+  color: #00ADEE;
   background-color: #ffffff;
 }
 .btn-danger {
@@ -4902,7 +4902,7 @@ a.label:focus {
   background-color: #31b0d5;
 }
 .label-warning {
-  background-color: #b4b94e;
+  background-color: #00ADEE;
 }
 .label-warning[href]:hover,
 .label-warning[href]:focus {
@@ -5184,7 +5184,7 @@ a.thumbnail.active {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 .progress-bar-warning {
-  background-color: #b4b94e;
+  background-color: #00ADEE;
 }
 .progress-striped .progress-bar-warning {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
