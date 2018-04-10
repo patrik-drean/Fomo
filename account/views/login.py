@@ -10,6 +10,7 @@ from simplejson import loads
 from account import models as amod
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
+from catalog import models as cmod
 
 @view_function
 def process_request(request, product_id = None, qty = None):
@@ -116,7 +117,8 @@ class LoginForm(Formless):
 
 
         # Grab the current product selected and create it the cart
-        product_in_cart = cart.get_item(id=product_id, create=True)
+        product = cmod.Product.objects.get(id = product_id)
+        product_in_cart = cart.get_item(product = product, create=True)
 
         # Add the quantity to what the line item already has in the cart
         product_in_cart.quantity += qty
