@@ -33,7 +33,9 @@ def process_request(request, productid):
 
             return HttpResponseRedirect('/catalog/cart/')
         else:
-            return HttpResponseRedirect('/account/login/')
+            pid = form.product_id
+            qty = form.qty
+            return HttpResponseRedirect('/account/login/{}/{}'.format(pid,qty))
 
     context = {
         'product': product,
@@ -50,6 +52,7 @@ class AddItemForm(Formless):
         self.product_id = kwargs.pop('product_id')
         self.product = cmod.Product.objects.get(id = self.product_id)
         self.first_time = False
+        self.qty = 0
 
         super(AddItemForm, self).__init__(*args, **kwargs)
         '''This is defaulted, but now i can edit by using the above 2 lines'''
@@ -64,7 +67,7 @@ class AddItemForm(Formless):
 
     def clean_quantity(self):
         qty = self.cleaned_data.get('quantity')
-
+        self.qty = qty
         # Make sure user is logged in
         if self.request.user.is_authenticated:
             if qty != '':

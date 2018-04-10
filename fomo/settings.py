@@ -175,8 +175,18 @@ DATABASES = {
         'PORT': '1515',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'fomo',
+#         'USER': 'patrikdrean',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 # For postgres backup db
- # import dj_database_url 
+ # import dj_database_url
  # db_from_env = dj_database_url.config()
  # DATABASES['default'].update(db_from_env)
 

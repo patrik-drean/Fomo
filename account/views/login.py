@@ -12,12 +12,15 @@ from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
 @view_function
-def process_request(request):
+def process_request(request, product_id = None, qty = None):
     form = LoginForm(request)
     if form.is_valid():
         form.commit()
-        return HttpResponseRedirect('/homepage/')
-
+        if product_id is None and qty is None:
+            return HttpResponseRedirect('/homepage/')
+        else:
+            form.commit_cart(product_id, qty)
+            return HttpResponseRedirect('/catalog/cart')
     context = {
         "form": form,
     }
@@ -100,6 +103,23 @@ class LoginForm(Formless):
                 raise forms.ValidationError('Invalid email or password')
 
     def commit(self):
-
         #authenticate away
         login(self.request, self.user)
+
+    def commit_cart(self, product_id, qty):
+        cart = self.request.user.get_shopping_cart()
+        if qty == '':
+            qty = 0
+        else:
+            qty = int(qty)
+            qty = qty - 1
+
+
+        # Grab the current product selected and create it the cart
+        product_in_cart = cart.get_item(id=product_id, create=True)
+
+        # Add the quantity to what the line item already has in the cart
+        product_in_cart.quantity += qty
+
+        # Save updated line item
+        product_in_cart.save()
