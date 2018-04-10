@@ -34,7 +34,10 @@ def process_request(request, productid):
             return HttpResponseRedirect('/catalog/cart/')
         else:
             pid = form.product_id
-            qty = form.qty
+            if qty == '':
+                qty = 0
+            else:
+                qty = form.qty
             return HttpResponseRedirect('/account/login/{}/{}'.format(pid,qty))
 
     context = {
