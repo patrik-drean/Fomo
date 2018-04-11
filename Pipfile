@@ -17,8 +17,8 @@ whitenoise = "*"
 django-mako-plus = "*"
 requests = "*"
 stripe = "*"
-
-
+simplejson = "*"
+ldap3 = "*"
 
 
 [requires]
