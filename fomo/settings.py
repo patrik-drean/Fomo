@@ -165,26 +165,26 @@ WSGI_APPLICATION = 'fomo.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'fomo',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': '128.187.61.36',
-#         'PORT': '1515',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fomo',
-        'USER': 'patrikdrean',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '128.187.61.36',
+        'PORT': '1515',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'fomo',
+#         'USER': 'patrikdrean',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 # For postgres backup db
  # import dj_database_url
  # db_from_env = dj_database_url.config()
