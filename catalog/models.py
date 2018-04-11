@@ -159,7 +159,7 @@ class Order(models.Model):
                 product=product,
                 price=product.Price,
                 quantity=0)
-            print(item)
+
         elif create and item.status != 'active':
             item.status = 'active'
             item.quantity = 0

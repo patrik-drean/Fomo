@@ -77,11 +77,11 @@ class SignupForm(Formless):
 
         # Add permission
         ct = ContentType.objects.get_for_model(amod.User)
-        permission1 = Permission.objects.get(codename ='can_create')
+        # permission1 = Permission.objects.get(codename ='can_create')
 
         user.save()
-        user.user_permissions.add(permission1)
-        user.save()
+        # user.user_permissions.add(permission1)
+        # user.save()
 
         user = authenticate(email = user.email, password = self.cleaned_data.get("password"))
         login(self.request, user)

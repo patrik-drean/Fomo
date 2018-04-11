@@ -52,7 +52,7 @@ function search() {
   }
 
   // Redirect to search.py
-  window.location.href = "http://localhost:8000/catalog/search/"+ category_name +
+  window.location.href = "/catalog/search/"+ category_name +
     "/"+ product_name +
     "/" + price +
     "/" + page + '/?format=json';

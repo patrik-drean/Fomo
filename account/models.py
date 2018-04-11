@@ -18,15 +18,15 @@ class User(AbstractCUser):
         if cart is None:
             cart = cmod.Order()
             cart.user = self
-            
+
             cart.save()
 
             # create tax product
-            tax_product = Product.objects.get(id = 75)
-            tax_item = OrderItem()
+            tax_product = cmod.Product.objects.get(id = 75)
+            tax_item = cmod.OrderItem()
             tax_item.product = tax_product
             tax_item.description = tax_product.Description
-            self.get_item(product = tax_product, create=True)
+            cart.get_item(product = tax_product, create=True)
 
 
 
