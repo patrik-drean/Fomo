@@ -136,7 +136,7 @@ class Order(models.Model):
 
             #  grab tax item and append to the end
             tax_item = OrderItem.objects.get(order_id = self.id, product_id = 75)
-            items.appened(tax_item)
+            items.append(tax_item)
 
         # if we aren't including the tax item, alter the
         # query to exclude that OrderItem
