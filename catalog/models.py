@@ -131,11 +131,11 @@ class Order(models.Model):
         '''Returns the active items on this order'''
         # create a query object (filter to status='active')
         if include_tax_item:
-            items = OrderItem.objects.filter(status='active',order_id = self.id).exclude(
-                product_id = 75)
+            items = list(OrderItem.objects.filter(status='active',order_id = self.id).exclude(
+                product_id = 75))
 
             #  grab tax item and append to the end
-            tax_item = list(OrderItem.objects.get(order_id = self.id, product_id = 75))
+            tax_item = OrderItem.objects.get(order_id = self.id, product_id = 75)
             items.appened(tax_item)
 
         # if we aren't including the tax item, alter the
