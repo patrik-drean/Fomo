@@ -12,7 +12,7 @@
   % endif
    <li><a href="/catalog/" class = "${ 'active' if request.dmp.app == 'catalog' else ''}">View Products</a></li>
    % if user.has_perm('account.admin'):
-   <li><a href="/catalog/" class = "${ 'active' if request.dmp.app == 'manager' else ''}">View Products</a></li>
+   <li><a href="/manager/" class = "${ 'active' if request.dmp.app == 'manager' else ''}">Manage Products</a></li>
    % endif
 
 </ul>
