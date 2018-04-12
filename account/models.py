@@ -21,7 +21,6 @@ class User(AbstractCUser):
 
             cart.save()
 
-            from catalog import models as cmod
             # create tax product
             tax_product = cmod.Product.objects.get(id = 75)
             tax_item = cmod.OrderItem()
