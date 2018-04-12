@@ -5540,6 +5540,24 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can create",
+    "content_type": 7,
+    "codename": "can_create"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Admin",
+    "content_type": 7,
+    "codename": "admin"
+  }
+},
+{
   "model": "auth.group",
   "pk": 2,
   "fields": {
