@@ -48,9 +48,6 @@ class LoginForm(Formless):
 
         # Check if user is in Active Directory
 
-        user_email = 'bclark@musical-family.me'
-        user_password = 'Server!'
-
 
         ad_check = None
         server = Server('musical-family.me')

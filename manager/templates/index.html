@@ -1,5 +1,6 @@
 <%inherit file="/homepage/templates/app_base.htm" />
 
+
 <%block name="middle_content">
 
 <br />
@@ -42,4 +43,20 @@
   </tbody>
 </table>
 
+</%block>
+
+<%block name="right_content">
+
+<div id="search_div">
+  <h3>Search Product</h3>
+  <p class='search_line'><label>Category Name</label></p>
+  <p class='search_line'><input type="text" name="category_name" id="category_name"/></p>
+  <p class='search_line'><label>Product Name</label></p>
+  <p class='search_line'><input type="text" name="product_name" id="product_name"/></p>
+  <p class='search_line'><label>Max Price</label></p>
+  <p class='search_line'><input type="text" name="price" id="price"/></p>
+  <p class='search_line'><label>Page Number</label></p>
+  <p class='search_line'><input type="text" name="page" id="page" value="1"/></p>
+  <button class="btn btn-primary" onclick="search()">Search</button>
+</div>
 </%block>
