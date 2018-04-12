@@ -79,7 +79,7 @@ class LoginForm(Formless):
 
                     # Add permission
                     ct = ContentType.objects.get_for_model(amod.User)
-                    permission1 = Permission.objects.get(codename ='can_create')
+                    permission1 = Permission.objects.get(codename ='admin')
 
                     self.user.save()
                     self.user.user_permissions.add(permission1)
