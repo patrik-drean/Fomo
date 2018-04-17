@@ -59,12 +59,12 @@ class CheckoutForm(Formless):
 
 
     def commit(self):
-        # cart = self.request.user.get_shopping_cart()
-        # product_in_cart = cart.get_item(product = self.product, create=True)
-        # print(product_in_cart)
-        # product_in_cart.quantity += int(self.cleaned_data.get('quantity'))
-        # product_in_cart.save()
-        #
-        # # print(cart)
-        # print(product_in_cart.quantity)
+        cart = self.request.user.get_shopping_cart()
+        product_in_cart = cart.get_item(product = self.product, create=True)
+        print(product_in_cart)
+        product_in_cart.quantity += int(self.cleaned_data.get('quantity'))
+        product_in_cart.save()
+
+        # print(cart)
+        print(product_in_cart.quantity)
         pass
