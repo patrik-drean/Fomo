@@ -51,7 +51,6 @@ class CheckoutForm(Formless):
         cart = self.request.user.get_shopping_cart()
         try:
             token = self.cleaned_data.get('stripeToken')
-            print(token)
             cart.finalize(token, int(round(cart.total_price, 2) * 100))
         except Exception as e:
             traceback.print_exc()
@@ -59,12 +58,12 @@ class CheckoutForm(Formless):
 
 
     def commit(self):
-        cart = self.request.user.get_shopping_cart()
-        product_in_cart = cart.get_item(product = self.product, create=True)
-        print(product_in_cart)
-        product_in_cart.quantity += int(self.cleaned_data.get('quantity'))
-        product_in_cart.save()
-
-        # print(cart)
-        print(product_in_cart.quantity)
+        # cart = self.request.user.get_shopping_cart()
+        # product_in_cart = cart.get_item(product = self.product, create=True)
+        # print(product_in_cart)
+        # product_in_cart.quantity += int(self.cleaned_data.get('quantity'))
+        # product_in_cart.save()
+        #
+        # # print(cart)
+        # print(product_in_cart.quantity)
         pass

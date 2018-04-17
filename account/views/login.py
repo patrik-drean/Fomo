@@ -49,56 +49,56 @@ class LoginForm(Formless):
         # Check if user is in Active Directory
 
 
-        ad_check = None
-        server = Server('musical-family.me')
-        conn = Connection(server, user='MUSICAL-FAMILY\\Administrator', password='IS5Server!')
-        search_base = 'cn=Users,dc=musical-family,dc=local'
-        search_filter = '(mail=' + user_email + ')'
-        conn.bind()
-
-        # See if username is in Active Directory
-        if conn.search(search_base,search_filter,attributes='sAMAccountName'):
-            name = 'MUSICAL-FAMILY\\' + loads(conn.response_to_json())['entries'][0]['attributes']['sAMAccountName']
-            conn = Connection(server,user=name,password=user_password)
-
-            # Authenticate user if password is correct
-            if conn.bind():
-                # Authenticate user if in database
-                self.user = authenticate(
-                                        email = user_email,
-                                        password = user_password,
-                                        )
-                # Create user in database if authentication failed
-                if self.user is None:
-                    self.user = amod.User()
-                    self.user.email = user_email
-                    self.user.set_password(user_password)
-
-                    # Add permission
-                    ct = ContentType.objects.get_for_model(amod.User)
-                    permission1 = Permission.objects.get(codename ='admin')
-
-                    self.user.save()
-                    self.user.user_permissions.add(permission1)
-                    self.user.save()
-
-                    self.user = authenticate(
-                                            email = user_email,
-                                            password = user_password,
-                                            )
-
-            # Raise exception if user password is incorrect
-            else:
-                raise forms.ValidationError('Invalid Active Directory Password')
-
-        # Authenticate if user is not in Active Directory
-        else:
-            self.user = authenticate(
-                                    email = user_email,
-                                    password = user_password,
-                                    )
-            if self.user is None:
-                raise forms.ValidationError('Invalid email or password')
+        # ad_check = None
+        # server = Server('musical-family.me')
+        # conn = Connection(server, user='MUSICAL-FAMILY\\Administrator', password='IS5Server!')
+        # search_base = 'cn=Users,dc=musical-family,dc=local'
+        # search_filter = '(mail=' + user_email + ')'
+        # conn.bind()
+        #
+        # # See if username is in Active Directory
+        # if conn.search(search_base,search_filter,attributes='sAMAccountName'):
+        #     name = 'MUSICAL-FAMILY\\' + loads(conn.response_to_json())['entries'][0]['attributes']['sAMAccountName']
+        #     conn = Connection(server,user=name,password=user_password)
+        #
+        #     # Authenticate user if password is correct
+        #     if conn.bind():
+        #         # Authenticate user if in database
+        #         self.user = authenticate(
+        #                                 email = user_email,
+        #                                 password = user_password,
+        #                                 )
+        #         # Create user in database if authentication failed
+        #         if self.user is None:
+        #             self.user = amod.User()
+        #             self.user.email = user_email
+        #             self.user.set_password(user_password)
+        #
+        #             # Add permission
+        #             ct = ContentType.objects.get_for_model(amod.User)
+        #             permission1 = Permission.objects.get(codename ='admin')
+        #
+        #             self.user.save()
+        #             self.user.user_permissions.add(permission1)
+        #             self.user.save()
+        #
+        #             self.user = authenticate(
+        #                                     email = user_email,
+        #                                     password = user_password,
+        #                                     )
+        #
+        #     # Raise exception if user password is incorrect
+        #     else:
+        #         raise forms.ValidationError('Invalid Active Directory Password')
+        #
+        # # Authenticate if user is not in Active Directory
+        # else:
+        self.user = authenticate(
+                                email = user_email,
+                                password = user_password,
+                                )
+        if self.user is None:
+            raise forms.ValidationError('Invalid email or password')
 
     def commit(self):
         #authenticate away
